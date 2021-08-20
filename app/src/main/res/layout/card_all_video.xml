@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_trending_video"
+    android:layout_width="match_parent"
+    android:layout_height="230dp">
+
+    <androidx.cardview.widget.CardView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="2dp"
+        app:cardCornerRadius="10dp">
+
+        <ImageView
+            android:id="@+id/video_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="fitXY"
+            android:src="@color/theme_color" />
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

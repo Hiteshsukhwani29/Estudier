@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Estudier</string>
+
+
+    <string name="name">Name</string>
+    <string name="mobile_number">Mobile Number</string>
+
+    <string name="title_aboutus">About Us</string>
+    <string name="title_feedback">Feedback</string>
+    <string name="title_home">Home</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="intro1_quote">You have to dream before\nyour dreams can come true\n\n\n~ DR. APJ Abdul Kalam</string>
+    <string name="intro2_quote">Get Books, Notes, Videos of your Teacher and\nfrom all over the world directly on Phone\nwithout wasting a penny</string>
+    <string name="intro3_quote">Winners are not those who\nnever fail but those who never quit.\n~ DR. APJ Abdul Kalam\n\nSo, What are you waiting for click on get started and resume your studies on your phone</string>
+    <string name="profile">Profile</string>
+    <string name="login_checkbox_text">Send me information about upcoming events and important dates by mail (Optional)</string>
+    <string name="login_btn_text">Get OTP</string>
+    <string name="login_et_email">Email Address</string>
+    <string name="login_et_mobileno">Mobile Number</string>
+    <string name="login_et_name">Name</string>
+    <string name="intro1_btn_text">Next</string>
+    <string name="intro2_btn_text">Next</string>
+    <string name="intro3_btn_text">Get Started</string>
+    <string name="login_heading2">To continue using our app...</string>
+    <string name="login_heading1">Sign In</string>
+    <string name="login_checkbox_text_small">We do not spam and if you are not comfortable, you can unsubscribe it anytime</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>

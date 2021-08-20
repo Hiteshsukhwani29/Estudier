@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="developer_name">12sp</dimen>
+    <dimen name="aboutUs">84sp</dimen>
+    <dimen name="founder">18sp</dimen>
+</resources>

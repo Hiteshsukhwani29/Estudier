@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:overScrollMode="never">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/about_us"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/raleway_bold"
+            android:padding="5dp"
+            android:text="About Us"
+            android:textAlignment="center"
+            android:textColor="@color/theme_color"
+            android:textSize="@dimen/aboutUs" />
+
+        <TextView
+            android:id="@+id/founder_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/about_us"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/raleway_bold"
+            android:paddingLeft="15dp"
+            android:text="Founder"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/founder"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/founders"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/founder_heading"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6" />
+
+            <include
+                android:id="@+id/card_founder_1"
+                layout="@layout/card_team"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="41" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6" />
+
+            <include
+                android:id="@+id/card_founder_2"
+                layout="@layout/card_team"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="41" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/cofounder_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/founders"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/raleway_bold"
+            android:paddingLeft="15dp"
+            android:text="Co-Founder"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/founder"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/cofounders"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/cofounder_heading"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6" />
+
+            <include
+                android:id="@+id/card_cofounder_1"
+                layout="@layout/card_team"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="41" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6" />
+
+
+            <com.google.android.material.card.MaterialCardView
+
+                android:id="@+id/join_team"
+                android:layout_width="0dp"
+                android:layout_height="230dp"
+                android:layout_margin="10dp"
+                android:layout_weight="41"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="12dp"
+                app:strokeColor="@color/theme_color"
+                app:strokeWidth="2dp">
+
+                <ImageView
+                    android:id="@+id/team_mem_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="20dp"
+                    android:src="@drawable/join_team" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/contributors_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cofounders"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/raleway_bold"
+            android:paddingLeft="15dp"
+            android:text="Contributors"
+            android:textColor="@color/grey"
+            android:textSize="@dimen/founder"
+            android:textStyle="bold" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_contributors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/contributors_heading"
+            android:layout_marginBottom="30dp"
+            android:nestedScrollingEnabled="false"
+            android:overScrollMode="never"
+            android:scrollbars="none" />
+
+    </RelativeLayout>
+
+
+</androidx.core.widget.NestedScrollView>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "389819896862",
+    "project_id": "edu-project-2423e",
+    "storage_bucket": "edu-project-2423e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:389819896862:android:ae13ddf7de5d98231b8a0f",
+        "android_client_info": {
+          "package_name": "com.scriptech.vstudy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "389819896862-b6p5lnicr47c2cr9l428hmm14bb222ig.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.scriptech.vstudy",
+            "certificate_hash": "9a7be00cdb0c2beefb3ddef1f61323076096ad1a"
+          }
+        },
+        {
+          "client_id": "389819896862-jq8vqr5b5dgr50ke4is0lkpnqv8kvjrg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.scriptech.vstudy",
+            "certificate_hash": "2d5a7878f0ffd67384d923d14e4e73001d4654b7"
+          }
+        },
+        {
+          "client_id": "389819896862-k5rp2bobu05i6h8raf633ughff7dd9b9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_Q-VuDbvTNBUur76yROAiMIbgIBCbsm4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "389819896862-k5rp2bobu05i6h8raf633ughff7dd9b9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
