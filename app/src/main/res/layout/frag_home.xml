@@ -37,7 +37,7 @@
                     android:layout_marginLeft="20dp"
                     android:fontFamily="@font/raleway_bold"
                     android:padding="10dp"
-                    android:text="@string/app_name"
+                    android:text="eStudier"
                     android:textColor="#ffffff"
                     android:textSize="24sp" />
 
@@ -78,15 +78,18 @@
 
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/card_Nos_Notes"
+                    android:id="@+id/card_Nos_notes"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="33.3"
+                    app:cardMaxElevation="12dp"
+                    app:cardElevation="5dp"
                     app:cardCornerRadius="5dp"
                     app:cardPreventCornerOverlap="true"
                     app:cardUseCompatPadding="true">
 
                     <TextView
+                        android:id="@+id/card_notes"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
@@ -102,33 +105,39 @@
                         android:padding="10dp"
                         android:text="100+"
                         android:textColor="#EC2028"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|right"
-                        android:layout_marginBottom="4dp"
                         android:padding="8dp"
                         android:text="Notes"
-                        android:textColor="#747D8C"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="4dp"
+                        android:textColor="#747D8C"/>
+
 
 
                 </androidx.cardview.widget.CardView>
 
+
+
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/card_Nos_Books"
+                    android:id="@+id/card_Nos_books"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="33.3"
+                    app:cardMaxElevation="12dp"
+                    app:cardElevation="5dp"
                     app:cardCornerRadius="5dp"
                     app:cardPreventCornerOverlap="true"
                     app:cardUseCompatPadding="true">
 
                     <TextView
+                        android:id="@+id/card_books"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
@@ -142,29 +151,34 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:padding="10dp"
-                        android:text="30+"
+                        android:text="100+"
                         android:textColor="#EC2028"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|right"
-                        android:layout_marginBottom="4dp"
                         android:padding="8dp"
                         android:text="Books"
-                        android:textColor="#747D8C"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="4dp"
+                        android:textColor="#747D8C"/>
+
+
 
                 </androidx.cardview.widget.CardView>
 
+
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/card_Nos_Collage"
+                    android:id="@+id/card_Nos_videos"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="33.3"
+                    app:cardMaxElevation="12dp"
+                    app:cardElevation="5dp"
                     app:cardCornerRadius="5dp"
                     app:cardPreventCornerOverlap="true"
                     app:cardUseCompatPadding="true">
@@ -184,21 +198,22 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:padding="10dp"
-                        android:text="5+"
+                        android:text="20+"
                         android:textColor="#EC2028"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom|right"
-                        android:layout_marginBottom="4dp"
                         android:padding="8dp"
                         android:text="Videos"
-                        android:textColor="#747D8C"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="4dp"
+                        android:textColor="#747D8C"/>
+
 
 
                 </androidx.cardview.widget.CardView>
