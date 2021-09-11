@@ -30,7 +30,7 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/raleway_bold"
             android:paddingLeft="15dp"
-            android:text="Founder"
+            android:text="Developed By"
             android:textColor="@color/grey"
             android:textSize="@dimen/founder"
             android:textStyle="bold" />
@@ -74,7 +74,7 @@
                 android:layout_weight="6" />
         </LinearLayout>
 
-        <TextView
+        <!--<TextView
             android:id="@+id/cofounder_heading"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -163,7 +163,55 @@
             android:nestedScrollingEnabled="false"
             android:overScrollMode="never"
             android:scrollbars="none" />
+-->
 
+        <TextView
+            android:id="@+id/title_about_app"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_bold"
+            android:layout_below="@+id/founders"
+            android:layout_marginTop="30dp"
+            android:paddingLeft="20dp"
+            android:text="About the App" />
+
+        <TextView
+            android:id="@+id/about_app"
+            android:layout_below="@+id/title_about_app"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="It can be used to provide study materials(notes, books , videos) to students from various colleges and departments\n
+Anyone from anywhere can learn without wasting a penny"
+
+            android:paddingRight="40dp"
+            android:paddingLeft="20dp"
+            android:lineSpacingExtra="2dp"
+            android:layout_marginTop="5dp"
+            android:gravity="start" />
+
+        <TextView
+            android:id="@+id/title_next_update"
+            android:layout_below="@+id/about_app"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingLeft="20dp"
+            android:fontFamily="@font/raleway_bold"
+            android:text="Next Update"/>
+
+        <TextView
+            android:id="@+id/next_update"
+            android:layout_below="@+id/title_next_update"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:lineSpacingExtra="8dp"
+            android:paddingLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:text="•  Anyone can Bookmark his/her favourites videos/books\n
+•  Creating Better UI/UX\n
+•  More Colleges/Department will be Added\n
+•  We will work on space complexity to reduce network load"/>
     </RelativeLayout>
 
 
