@@ -204,10 +204,12 @@ Anyone from anywhere can learn without wasting a penny"
             android:layout_below="@+id/title_next_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:paddingRight="20dp"
             android:lineSpacingExtra="8dp"
             android:paddingLeft="20dp"
             android:layout_marginTop="5dp"
-            android:text="•  Anyone can Bookmark his/her favourites videos/books\n
+            android:text=" •  Anyone can Bookmark his/her favourites videos/books\n
 •  Creating Better UI/UX\n
 •  More Colleges/Department will be Added\n
 •  We will work on space complexity to reduce network load"/>
