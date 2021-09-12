@@ -30,9 +30,10 @@
 
         <ImageView
             android:id="@+id/img_view2"
-            android:layout_width="130dp"
-            android:layout_height="130dp"
-            android:src="@drawable/profile_pic" />
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:src="@drawable/ic_profile_pic" />
+
     </LinearLayout>
 
     <RelativeLayout
@@ -48,16 +49,9 @@
             android:fontFamily="@font/raleway_bold"
             android:text=""
             android:textColor="@color/black"
+            android:textSize="18sp"
+            android:drawableLeft="@drawable/ic_profile" />
 
-            android:textSize="18sp" />
-
-        <View
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_centerInParent="true"
-            android:layout_marginRight="8dp"
-            android:layout_toLeftOf="@+id/Profile_Name"
-            android:background="@drawable/ic_profile" />
 
 
     </RelativeLayout>
@@ -73,16 +67,10 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text=""
+            android:drawableLeft="@drawable/ic_phone"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_centerInParent="true"
-            android:layout_marginRight="8dp"
-            android:layout_toLeftOf="@+id/Profile_Phoneno"
-            android:background="@drawable/ic_phone" />
 
 
     </RelativeLayout>
@@ -98,16 +86,11 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text=""
+            android:drawableLeft="@drawable/ic_email"
             android:textColor="@color/black"
             android:textSize="18sp" />
 
-        <View
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_centerInParent="true"
-            android:layout_marginRight="8dp"
-            android:layout_toLeftOf="@+id/Profile_Email"
-            android:background="@drawable/ic_email" />
+
 
 
     </RelativeLayout>
