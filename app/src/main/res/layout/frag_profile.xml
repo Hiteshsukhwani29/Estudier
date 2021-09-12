@@ -32,7 +32,7 @@
             android:id="@+id/img_view2"
             android:layout_width="96dp"
             android:layout_height="96dp"
-            android:src="@drawable/ic_profile_pic" />
+            app:srcCompat="@drawable/ic_profile_pic" />
 
     </LinearLayout>
 
@@ -103,33 +103,31 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="7"
+        android:layout_weight="11"
         android:orientation="horizontal"
         android:weightSum="100">
 
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="30" />
+            android:layout_weight="25" />
 
         <Button
             android:id="@+id/btn_logout"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="40"
+            android:layout_margin="15dp"
+            android:layout_weight="50"
             android:background="@drawable/btn_getotp"
             android:text="Log Out"
             android:textAllCaps="false"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            app:backgroundTint="#6CB4EE"
-
-            />
+            android:textSize="20sp" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="30" />
+            android:layout_weight="25" />
     </LinearLayout>
 
     <View
