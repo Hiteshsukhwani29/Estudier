@@ -76,9 +76,9 @@ public class Profile extends Fragment {
                             a = document.getString("name");
                             b = document.getString("number");
                             c = document.getString("email");
-                            Name.setText(a);
-                            Phoneno.setText(b);
-                            Email.setText(c);
+                            Name.setText("    "+a);
+                            Phoneno.setText("    "+b);
+                            Email.setText("    "+c);
                         } else {
                             Log.d("LOGGER", "Error");
                         }
