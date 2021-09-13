@@ -29,6 +29,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about_the_app">Estudier is an Android app to help people get their desired books, study materials and educational videos easily. You can access resourses from anywhere anytime without investing a penny.</string>
 
 
 </resources>
