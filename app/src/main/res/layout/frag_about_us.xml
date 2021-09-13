@@ -180,8 +180,7 @@
             android:layout_below="@+id/title_about_app"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="It can be used to provide study materials(notes, books , videos) to students from various colleges and departments\n
-Anyone from anywhere can learn without wasting a penny"
+            android:text="@string/about_the_app"
 
             android:paddingRight="40dp"
             android:paddingLeft="20dp"
@@ -197,7 +196,7 @@ Anyone from anywhere can learn without wasting a penny"
             android:layout_marginTop="20dp"
             android:paddingLeft="20dp"
             android:fontFamily="@font/raleway_bold"
-            android:text="Next Update"/>
+            android:text="What's Next!"/>
 
         <TextView
             android:id="@+id/next_update"
@@ -209,10 +208,9 @@ Anyone from anywhere can learn without wasting a penny"
             android:lineSpacingExtra="8dp"
             android:paddingLeft="20dp"
             android:layout_marginTop="5dp"
-            android:text=" •  Anyone can Bookmark his/her favourites videos/books\n
-•  Creating Better UI/UX\n
-•  More Colleges/Department will be Added\n
-•  We will work on space complexity to reduce network load"/>
+            android:text=" •  One can Bookmark his favourites videos/books\n
+•  Better UI\n
+•  More colleges/departments will be added\n"/>
     </RelativeLayout>
 
 
