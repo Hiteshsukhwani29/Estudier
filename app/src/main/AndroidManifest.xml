@@ -13,10 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Main2Activity"
+            android:name=".ui.activities.mainActivity2.Main2Activity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/AppTheme1" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.activities.mainActivity1.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
