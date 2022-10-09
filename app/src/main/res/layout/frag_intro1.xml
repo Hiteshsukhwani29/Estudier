@@ -7,7 +7,7 @@
     android:background="#ffffff"
     android:orientation="vertical"
     android:weightSum="100"
-    tools:context=".Intro2">
+    tools:context=".ui.fragments.intros.Intro2">
 
     <View
         android:layout_width="match_parent"
