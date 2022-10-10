@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/intro3">
+
+    <fragment
+        android:id="@+id/intro1"
+        android:name="com.scriptech.vstudy.ui.fragments.intros.Intro1"
+        android:label="Intro1" >
+        <action
+            android:id="@+id/action_intro1_to_intro2"
+            app:destination="@id/intro2" />
+    </fragment>
+    <fragment
+        android:id="@+id/intro2"
+        android:name="com.scriptech.vstudy.ui.fragments.intros.Intro2"
+        android:label="frag_intro2"
+        tools:layout="@layout/frag_intro2" >
+        <action
+            android:id="@+id/action_intro2_to_intro3"
+            app:destination="@id/intro3" />
+    </fragment>
+    <fragment
+        android:id="@+id/intro3"
+        android:name="com.scriptech.vstudy.ui.fragments.intros.Intro3"
+        android:label="frag_intro3"
+        tools:layout="@layout/frag_intro3" >
+        <action
+            android:id="@+id/action_intro3_to_login"
+            app:destination="@id/login" />
+    </fragment>
+    <fragment
+        android:id="@+id/login"
+        android:name="com.scriptech.vstudy.ui.fragments.login.Login"
+        android:label="Login" />
+
+</navigation>
