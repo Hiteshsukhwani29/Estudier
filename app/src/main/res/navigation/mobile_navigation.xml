@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/home2">
+    <fragment
+        android:id="@+id/home2"
+        android:name="com.scriptech.vstudy.ui.fragments.home.Home"
+        android:label="Home" >
+        <action
+            android:id="@+id/action_home2_to_aboutUs"
+            app:destination="@id/navigation_aboutus" />
+        <action
+            android:id="@+id/action_home2_to_departments"
+            app:destination="@id/departments" />
+        <action
+            android:id="@+id/action_home2_to_allBooks"
+            app:destination="@id/allBooks" />
+        <action
+            android:id="@+id/action_home2_to_feedback"
+            app:destination="@id/navigation_feedback" />
+        <action
+            android:id="@+id/action_home2_to_notifications"
+            app:destination="@id/navigation_notifications" />
+        <action
+            android:id="@+id/action_home2_to_allVideos"
+            app:destination="@id/allVideos" />
+        <action
+            android:id="@+id/action_home2_to_profile"
+            app:destination="@id/navigation_profile" />
+        <action
+            android:id="@+id/action_home2_to_departments2"
+            app:destination="@id/departments" />
+        <action
+            android:id="@+id/action_home2_to_videoPlayer"
+            app:destination="@id/videoPlayer" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_aboutus"
+        android:name="com.scriptech.vstudy.ui.fragments.aboutUs.AboutUs"
+        android:label="AboutUs" />
+    <fragment
+        android:id="@+id/allBooks"
+        android:name="com.scriptech.vstudy.ui.fragments.allBooks.AllBooks"
+        android:label="AllBooks" />
+    <fragment
+        android:id="@+id/allVideos"
+        android:name="com.scriptech.vstudy.ui.fragments.allVideos.AllVideos"
+        android:label="AllVideos" />
+    <fragment
+        android:id="@+id/navigation_feedback"
+        android:name="com.scriptech.vstudy.ui.fragments.feedback.Feedback"
+        android:label="Feedback" />
+    <fragment
+        android:id="@+id/departments"
+        android:name="com.scriptech.vstudy.ui.fragments.departments.Departments"
+        android:label="Departments" />
+    <fragment
+        android:id="@+id/navigation_notifications"
+        android:name="com.scriptech.vstudy.ui.fragments.notifications.Notifications"
+        android:label="Notifications" />
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.scriptech.vstudy.ui.fragments.profile.Profile"
+        android:label="Profile" />
+    <fragment
+        android:id="@+id/videoPlayer"
+        android:name="com.scriptech.vstudy.ui.fragments.videoPlayer.VideoPlayer"
+        android:label="VideoPlayer" />
+</navigation>
