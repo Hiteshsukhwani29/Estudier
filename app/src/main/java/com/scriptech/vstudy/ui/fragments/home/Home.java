@@ -243,7 +243,6 @@ public class Home extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-
         Fragment fragment = new Departments();
         switch (v.getId()) {
             case R.id.card_CS:
@@ -278,12 +277,12 @@ public class Home extends Fragment implements View.OnClickListener {
                 break;
         }
 
-        fragment.setArguments(bundle);
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frameContainer1, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+//        fragment.setArguments(bundle);
+//        FragmentManager fragmentManager = getFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.replace(R.id.frameContainer1, fragment);
+//        fragmentTransaction.addToBackStack(null);
+//        fragmentTransaction.commit();
     }
 
 
