@@ -4,17 +4,6 @@ package com.scriptech.vstudy.ui.fragments.home;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.CompositePageTransformer;
-import androidx.viewpager2.widget.MarginPageTransformer;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,21 +12,29 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.CompositePageTransformer;
+import androidx.viewpager2.widget.MarginPageTransformer;
+import androidx.viewpager2.widget.ViewPager2;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.scriptech.vstudy.ui.fragments.allBooks.AllBooks;
-import com.scriptech.vstudy.ui.fragments.allVideos.AllVideos;
-import com.scriptech.vstudy.ui.fragments.departments.Departments;
 import com.scriptech.vstudy.R;
 import com.scriptech.vstudy.adapters.bookAdapter;
+import com.scriptech.vstudy.adapters.sliderAdapter;
+import com.scriptech.vstudy.adapters.videoAdapter;
 import com.scriptech.vstudy.model.booksModel;
 import com.scriptech.vstudy.model.sliderModel;
 import com.scriptech.vstudy.model.videoModel;
-import com.scriptech.vstudy.adapters.sliderAdapter;
-import com.scriptech.vstudy.adapters.videoAdapter;
+import com.scriptech.vstudy.ui.fragments.allBooks.AllBooks;
+import com.scriptech.vstudy.ui.fragments.allVideos.AllVideos;
+import com.scriptech.vstudy.ui.fragments.departments.Departments;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -243,7 +240,6 @@ public class Home extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 
-
         Fragment fragment = new Departments();
         switch (v.getId()) {
             case R.id.card_CS:
@@ -278,12 +274,12 @@ public class Home extends Fragment implements View.OnClickListener {
                 break;
         }
 
-        fragment.setArguments(bundle);
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frameContainer1, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+//        fragment.setArguments(bundle);
+//        FragmentManager fragmentManager = getFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//        fragmentTransaction.replace(R.id.frameContainer1, fragment);
+//        fragmentTransaction.addToBackStack(null);
+//        fragmentTransaction.commit();
     }
 
 
