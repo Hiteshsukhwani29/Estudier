@@ -11,10 +11,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.scriptech.vstudy.adapters.BooksAdapter
+import com.scriptech.vstudy.adapters.VideosAdapter
 import com.scriptech.vstudy.adapters.videoAdapter
+import com.scriptech.vstudy.database.BooksDatabase
 import com.scriptech.vstudy.database.NotesDatabase
+import com.scriptech.vstudy.database.VideosDatabase
 import com.scriptech.vstudy.databinding.FragHomeBinding
+import com.scriptech.vstudy.repository.BooksRepository
 import com.scriptech.vstudy.repository.NotesRepository
+import com.scriptech.vstudy.repository.VideosRepository
 
 class Home : Fragment() {
     private var _binding: FragHomeBinding? = null
@@ -23,7 +28,7 @@ class Home : Fragment() {
 
     private lateinit var viewModel: HomeViewModel
 
-    private lateinit var videoAdapter: videoAdapter
+    private lateinit var videoAdapter: VideosAdapter
     private lateinit var bookAdapter: BooksAdapter
 
     override fun onCreateView(
@@ -43,21 +48,37 @@ class Home : Fragment() {
             }
         }
 
-        val newsRepository = NotesRepository(NotesDatabase(requireActivity()))
+        val notesRepository = NotesRepository(NotesDatabase(requireActivity()))
+        val booksRepository = BooksRepository(BooksDatabase(requireActivity()))
+        val videosRepository = VideosRepository(VideosDatabase(requireActivity()))
 
-        val viewModelFactory = HomeViewModelFactory(newsRepository)
+        val viewModelFactory = HomeViewModelFactory(booksRepository, videosRepository)
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
 
         bookAdapter = BooksAdapter(viewModel)
+        videoAdapter = VideosAdapter(viewModel)
 
         binding.homeRvAllbooks.apply {
             adapter = bookAdapter
             layoutManager = LinearLayoutManager(activity)
         }
 
-        viewModel._trendingBooks?.observe(viewLifecycleOwner) {
+        binding.homeRvAllvideos.apply {
+            adapter = videoAdapter
+            layoutManager = LinearLayoutManager(activity)
+        }
+
+        viewModel.getAllTrendingBooks()
+        viewModel.getAllTrendingVideos()
+
+        viewModel.trendingBooks?.observe(viewLifecycleOwner) {
             Log.d("final result search", it.toString())
             bookAdapter.differ.submitList(it)
+        }
+
+        viewModel.trendingVideos?.observe(viewLifecycleOwner) {
+            Log.d("final result search", it.toString())
+            videoAdapter.differ.submitList(it)
         }
 
         return root

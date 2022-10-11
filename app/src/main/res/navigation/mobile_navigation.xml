@@ -70,7 +70,9 @@
     <fragment
         android:id="@+id/videoPlayer"
         android:name="com.scriptech.vstudy.ui.fragments.videoPlayer.VideoPlayer"
-        android:label="VideoPlayer" />
+        android:label="VideoPlayer" >
+        <argument android:name="link" />
+    </fragment>
     <fragment
         android:id="@+id/pdf"
         android:name="com.scriptech.vstudy.ui.fragments.pdf.Pdf"
