@@ -35,6 +35,9 @@
         <action
             android:id="@+id/action_home2_to_videoPlayer"
             app:destination="@id/videoPlayer" />
+        <action
+            android:id="@+id/action_home2_to_pdf"
+            app:destination="@id/pdf" />
     </fragment>
     <fragment
         android:id="@+id/navigation_aboutus"
@@ -68,4 +71,13 @@
         android:id="@+id/videoPlayer"
         android:name="com.scriptech.vstudy.ui.fragments.videoPlayer.VideoPlayer"
         android:label="VideoPlayer" />
+    <fragment
+        android:id="@+id/pdf"
+        android:name="com.scriptech.vstudy.ui.fragments.pdf.Pdf"
+        android:label="frag_pdf"
+        tools:layout="@layout/frag_pdf" >
+        <argument
+            android:name="link"
+            app:argType="string" />
+    </fragment>
 </navigation>
