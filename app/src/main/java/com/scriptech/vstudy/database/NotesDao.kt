@@ -9,7 +9,7 @@ import com.scriptech.vstudy.model.Notes
 interface NotesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertNote(article: Notes): Long
+    suspend fun insertNote(note: Notes): Long
 
     @Query("SELECT * FROM notes")
     fun getSavedNotes(): LiveData<List<Notes>>
@@ -23,5 +23,5 @@ interface NotesDao {
     suspend fun searchSavedNotes(query: String): List<Notes>
 
     @Delete
-    suspend fun deleteNote(article: Notes)
+    suspend fun deleteNote(note: Notes)
 }
