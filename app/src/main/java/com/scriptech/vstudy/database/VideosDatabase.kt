@@ -4,17 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.scriptech.vstudy.model.Books
 import com.scriptech.vstudy.model.Notes
+import com.scriptech.vstudy.model.Videos
 
-@Database(entities = [Books::class], version = 1)
-abstract class BooksDatabase : RoomDatabase() {
+@Database(entities = [Videos::class], version = 1)
+abstract class VideosDatabase : RoomDatabase() {
 
-    abstract fun getBooksDao(): BooksDao
+    abstract fun getVideosDao(): VideosDao
 
     companion object {
         @Volatile
-        private var instance: BooksDatabase? = null
+        private var instance: VideosDatabase? = null
         private val LOCK = Any()
 
         operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
@@ -24,8 +24,8 @@ abstract class BooksDatabase : RoomDatabase() {
         private fun createDatabase(context: Context) =
             Room.databaseBuilder(
                 context.applicationContext,
-                BooksDatabase::class.java,
-                "books_database"
+                VideosDatabase::class.java,
+                "videos_database"
             )
                 .fallbackToDestructiveMigration()
                 .build()
