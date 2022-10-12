@@ -2,28 +2,28 @@ package com.scriptech.vstudy.repository
 
 import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
+import com.scriptech.vstudy.database.BooksDatabase
 import com.scriptech.vstudy.database.NotesDatabase
 import com.scriptech.vstudy.model.Books
-import com.scriptech.vstudy.model.DepartmentModel
 
-class NotesRepository(private val database: NotesDatabase) {
+class BooksRepository(private val database: BooksDatabase) {
 
     val db = FirebaseFirestore.getInstance()
 
-    lateinit var SubjectsList: MutableList<DepartmentModel>
+    lateinit var trendingBooksList: MutableList<Books>
 
-    fun getAllSubjects(dept_link: String): MutableList<DepartmentModel> {
-        db.collection(dept_link)
+    fun getAllTrendingBooks(): MutableList<Books> {
+        db.collection("Books_trending")
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
-                    SubjectsList.add(document.toObject(DepartmentModel::class.java))
+                    trendingBooksList.add(document.toObject(Books::class.java))
                 }
             }
             .addOnFailureListener { exception ->
                 Log.d("Trending Books", "Error getting documents: ", exception)
             }
-        return SubjectsList
+        return trendingBooksList
     }
 
 }

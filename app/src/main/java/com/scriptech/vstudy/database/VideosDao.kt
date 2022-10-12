@@ -4,24 +4,22 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.scriptech.vstudy.model.Notes
+import com.scriptech.vstudy.model.Videos
 
 @Dao
-interface NotesDao {
+interface VideosDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertNote(note: Notes): Long
+    suspend fun insertVideo(videos: Videos): Long
 
     @Query("SELECT * FROM notes")
-    fun getSavedNotes(): LiveData<List<Notes>>
+    fun getSavedVideo(): LiveData<List<Videos>>
 
     @Query("SELECT EXISTS (SELECT 1 FROM notes WHERE id = :id)")
     fun isAlreadySaved(id: Int) {
         Log.d("already saved",id.toString())
     }
 
-    @Query("SELECT * FROM notes WHERE name LIKE :query")
-    suspend fun searchSavedNotes(query: String): List<Notes>
-
     @Delete
-    suspend fun deleteNote(note: Notes)
+    suspend fun deleteNote(videos: Videos)
 }

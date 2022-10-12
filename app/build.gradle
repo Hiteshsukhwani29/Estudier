@@ -22,6 +22,12 @@ android {
         vectorDrawables.useSupportLibrary = true
         versionCode 2
     }
+    kotlinOptions {
+        freeCompilerArgs += [
+                "-Xjvm-default=all",
+        ]
+        jvmTarget = '1.8'
+    }
     buildTypes {
         release {
             minifyEnabled true
