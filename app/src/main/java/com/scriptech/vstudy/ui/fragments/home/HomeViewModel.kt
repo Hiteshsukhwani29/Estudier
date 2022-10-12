@@ -20,9 +20,11 @@ class HomeViewModel(val booksRepository: BooksRepository, val videosRepository: 
         get() = _trendingVideos
 
     fun getAllTrendingBooks() {
+        booksRepository.getAllTrendingBooks()
         _trendingBooks?.postValue(booksRepository.trendingBooksList)
     }
     fun getAllTrendingVideos() {
+        videosRepository.getAllTrendingVideos()
         _trendingVideos?.postValue(videosRepository.trendingVideosList)
     }
 

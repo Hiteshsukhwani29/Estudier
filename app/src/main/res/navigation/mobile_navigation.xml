@@ -58,7 +58,17 @@
     <fragment
         android:id="@+id/departments"
         android:name="com.scriptech.vstudy.ui.fragments.departments.Departments"
-        android:label="Departments" />
+        android:label="Departments" >
+        <argument
+            android:name="dept_name"
+            app:argType="string" />
+        <argument
+            android:name="dept_link"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_departments_to_subject"
+            app:destination="@id/subject" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.scriptech.vstudy.ui.fragments.notifications.Notifications"
@@ -80,6 +90,17 @@
         tools:layout="@layout/frag_pdf" >
         <argument
             android:name="link"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/subject"
+        android:name="com.scriptech.vstudy.ui.fragments.subject.Subject"
+        android:label="Subject" >
+        <argument
+            android:name="sub_name"
+            app:argType="string" />
+        <argument
+            android:name="sub_link"
             app:argType="string" />
     </fragment>
 </navigation>
