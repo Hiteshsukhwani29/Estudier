@@ -510,7 +510,7 @@
             android:weightSum="100">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/idRVCourses"
+                android:id="@+id/home_rv_allbooks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layoutDirection="rtl"
@@ -562,7 +562,7 @@
             android:weightSum="100">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_videos"
+                android:id="@+id/home_rv_allvideos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layoutDirection="rtl"
