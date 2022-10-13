@@ -6,7 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.scriptech.vstudy.adapters.BooksAdapter
@@ -17,6 +20,7 @@ import com.scriptech.vstudy.databinding.FragHomeBinding
 import com.scriptech.vstudy.repository.NotesRepository
 import com.scriptech.vstudy.ui.fragments.home.HomeViewModel
 import com.scriptech.vstudy.ui.fragments.home.HomeViewModelFactory
+import kotlinx.coroutines.launch
 
 class Departments: Fragment() {
     private var _binding: FragDepartmentsBinding? = null
@@ -44,16 +48,19 @@ class Departments: Fragment() {
 
         binding.deptName.text = args.deptName
 
-        viewModel.getAllSubjects(args.deptLink)
+//        viewModel.getAllSubjects(args.deptLink)
+
+        deptAdapter = DepartmentAdapter(viewModel)
 
         binding.recyclerProfile.apply {
             adapter = deptAdapter
             layoutManager = LinearLayoutManager(activity)
         }
 
-        viewModel.allSubjects?.observe(viewLifecycleOwner) {
-            Log.d("final result search", it.toString())
-            deptAdapter.differ.submitList(it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                deptAdapter.differ.submitList(viewModel.getAllSubjects(args.deptLink))
+            }
         }
 
         return root

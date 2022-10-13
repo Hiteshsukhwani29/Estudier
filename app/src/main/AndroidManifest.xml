@@ -16,7 +16,8 @@
             android:name=".ui.activities.mainActivity2.Main2Activity"
             android:configChanges="orientation|screenSize"
             android:theme="@style/AppTheme1" />
-        <activity android:name=".ui.activities.mainActivity1.MainActivity">
+        <activity android:name=".ui.activities.mainActivity1.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

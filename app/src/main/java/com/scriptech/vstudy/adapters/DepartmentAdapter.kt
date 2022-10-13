@@ -40,7 +40,7 @@ class DepartmentAdapter(var viewModel: DepartmentViewModel? = null) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.card_new_books, parent, false)
+            .inflate(R.layout.card_subject, parent, false)
         return ViewHolder(view)
     }
 
@@ -49,7 +49,7 @@ class DepartmentAdapter(var viewModel: DepartmentViewModel? = null) :
         holder.SubName.text = dept.sub_name
         holder.SubName.setOnClickListener {
             it.findNavController().navigate(
-                DepartmentsDirections.actionDepartmentsToSubject(dept.sub_name, dept.sub_link)
+                DepartmentsDirections.actionDepartmentsToSubject(dept.sub_name!!, dept.sub_link!!)
             )
         }
     }

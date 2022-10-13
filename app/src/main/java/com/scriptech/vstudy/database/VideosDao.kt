@@ -12,10 +12,10 @@ interface VideosDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertVideo(videos: Videos): Long
 
-    @Query("SELECT * FROM notes")
+    @Query("SELECT * FROM videos")
     fun getSavedVideo(): LiveData<List<Videos>>
 
-    @Query("SELECT EXISTS (SELECT 1 FROM notes WHERE id = :id)")
+    @Query("SELECT EXISTS (SELECT 1 FROM videos WHERE id = :id)")
     fun isAlreadySaved(id: Int) {
         Log.d("already saved",id.toString())
     }

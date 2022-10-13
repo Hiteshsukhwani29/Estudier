@@ -23,7 +23,7 @@ class VideosAdapter(var viewModel: HomeViewModel? = null) :
 
     private val differCallback = object : DiffUtil.ItemCallback<Videos>() {
         override fun areItemsTheSame(oldItem: Videos, newItem: Videos): Boolean {
-            return oldItem.link == newItem.link
+            return oldItem.video_link == newItem.video_link
         }
 
         override fun areContentsTheSame(oldItem: Videos, newItem: Videos): Boolean {
@@ -35,16 +35,16 @@ class VideosAdapter(var viewModel: HomeViewModel? = null) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.card_new_books, parent, false)
+            .inflate(R.layout.card_video, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val video = differ.currentList[position]
-        Picasso.get().load(video.img).into(holder.VideoImage)
+        Picasso.get().load(video.video_img).into(holder.VideoImage)
         holder.VideoImage.setOnClickListener {
             it.findNavController().navigate(
-                HomeDirections.actionHome2ToVideoPlayer(video.link)
+                HomeDirections.actionHome2ToVideoPlayer(video.video_link!!)
             )
         }
     }
@@ -54,6 +54,6 @@ class VideosAdapter(var viewModel: HomeViewModel? = null) :
     }
 
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-        val VideoImage = itemView.findViewById<ImageView?>(R.id.video_image)
+        val VideoImage = itemView.findViewById<ImageView>(R.id.video_image)
     }
 }

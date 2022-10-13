@@ -513,7 +513,6 @@
                 android:id="@+id/home_rv_allbooks"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layoutDirection="rtl"
                 android:overScrollMode="never"
                 android:scrollbars="none">
 
@@ -565,7 +564,6 @@
                 android:id="@+id/home_rv_allvideos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layoutDirection="rtl"
                 android:overScrollMode="never"
                 android:scrollbars="none" />
 

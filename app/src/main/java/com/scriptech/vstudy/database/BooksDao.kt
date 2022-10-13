@@ -12,7 +12,7 @@ interface BooksDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertBook(book: Books): Long
 
-    @Query("SELECT * FROM notes")
+    @Query("SELECT * FROM books")
     fun getSavedBooks(): LiveData<List<Books>>
 
     @Query("SELECT EXISTS (SELECT 1 FROM books WHERE id = :id)")

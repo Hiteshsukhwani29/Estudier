@@ -34,18 +34,17 @@ class BooksAdapter(var viewModel: HomeViewModel? = null) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.card_new_books, parent, false)
+            .inflate(R.layout.card_trending_book, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val book = differ.currentList[position]
         Picasso.get().load(book.book_img).into(holder.BookImage)
-        holder.BookName.text = book.book_name
         holder.BookauthName.text = book.book_author
         holder.Book.setOnClickListener {
             it.findNavController().navigate(
-                HomeDirections.actionHome2ToPdf(book.book_link)
+                HomeDirections.actionHome2ToPdf(book.book_link!!)
             )
         }
     }
@@ -55,9 +54,8 @@ class BooksAdapter(var viewModel: HomeViewModel? = null) :
     }
 
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-        val Book = itemView.findViewById<CardView>(R.id.card_new_book)
-        val BookImage = itemView.findViewById<ImageView>(R.id.img_new_book)
-        val BookName = itemView.findViewById<TextView>(R.id.txt_new_bookname)
-        val BookauthName = itemView.findViewById<TextView>(R.id.txt_new_bookauthorname)
+        val Book = itemView.findViewById<CardView>(R.id.card_trending_book)
+        val BookImage = itemView.findViewById<ImageView>(R.id.book_image)
+        val BookauthName = itemView.findViewById<TextView>(R.id.book_name)
     }
 }

@@ -1,29 +1,26 @@
 package com.scriptech.vstudy.repository
 
-import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.scriptech.vstudy.database.BooksDatabase
-import com.scriptech.vstudy.database.NotesDatabase
 import com.scriptech.vstudy.model.Books
+import kotlinx.coroutines.tasks.await
 
 class BooksRepository(private val database: BooksDatabase) {
 
     val db = FirebaseFirestore.getInstance()
 
-    lateinit var trendingBooksList: MutableList<Books>
+    var _trendingBooksList: MutableList<Books> = mutableListOf()
 
-    fun getAllTrendingBooks(): MutableList<Books> {
-        db.collection("Books_trending")
+    suspend fun getAllTrendingBooks(): MutableList<Books> {
+        val result = db.collection("Books_trending")
             .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    trendingBooksList.add(document.toObject(Books::class.java))
-                }
+            .await()
+        for (document in result) {
+            document.toObject(Books::class.java).let{
+                _trendingBooksList.add(it)
             }
-            .addOnFailureListener { exception ->
-                Log.d("Trending Books", "Error getting documents: ", exception)
-            }
-        return trendingBooksList
+        }
+        return _trendingBooksList
     }
 
 }
