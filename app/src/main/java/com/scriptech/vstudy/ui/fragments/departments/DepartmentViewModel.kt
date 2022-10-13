@@ -10,13 +10,6 @@ import com.scriptech.vstudy.repository.NotesRepository
 
 class DepartmentViewModel(val notesRepository: NotesRepository) : ViewModel() {
 
-    var _allSubjects: MutableLiveData<List<DepartmentModel>>? = null
-    var allSubjects: LiveData<List<DepartmentModel>>? = null
-        get() = _allSubjects
-
-    fun getAllSubjects(dept_link: String) {
-        notesRepository.getAllSubjects(dept_link)
-        _allSubjects?.postValue(notesRepository.SubjectsList)
-    }
+    suspend fun getAllSubjects(dept_link: String) = notesRepository.getAllSubjects(dept_link)
 
 }

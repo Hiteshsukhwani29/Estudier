@@ -9,7 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.*
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,9 +23,17 @@ import com.scriptech.vstudy.adapters.sliderAdapter
 import com.scriptech.vstudy.database.BooksDatabase
 import com.scriptech.vstudy.database.VideosDatabase
 import com.scriptech.vstudy.databinding.FragHomeBinding
+import com.scriptech.vstudy.model.Books
 import com.scriptech.vstudy.model.sliderModel
 import com.scriptech.vstudy.repository.BooksRepository
+//import com.scriptech.vstudy.repository.MyCallback
 import com.scriptech.vstudy.repository.VideosRepository
+//import com.scriptech.vstudy.repository.trendingBooksList
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.launch
 import kotlin.math.abs
 
 class Home : Fragment() {
@@ -38,7 +46,7 @@ class Home : Fragment() {
     private lateinit var videoAdapter: VideosAdapter
     private lateinit var bookAdapter: BooksAdapter
 
-    private lateinit var sliderItems: MutableList<sliderModel>
+    private var sliderItems: MutableList<sliderModel> = mutableListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,25 +79,21 @@ class Home : Fragment() {
 
         binding.homeRvAllbooks.apply {
             adapter = bookAdapter
-            layoutManager = LinearLayoutManager(activity)
+            hasFixedSize()
+            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL ,false)
         }
 
         binding.homeRvAllvideos.apply {
             adapter = videoAdapter
-            layoutManager = LinearLayoutManager(activity)
+            hasFixedSize()
+            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL ,false)
         }
 
-        viewModel.getAllTrendingBooks()
-        viewModel.getAllTrendingVideos()
-
-        viewModel.trendingBooks?.observe(viewLifecycleOwner) {
-            Log.d("final result search", it.toString())
-            bookAdapter.differ.submitList(it)
-        }
-
-        viewModel.trendingVideos?.observe(viewLifecycleOwner) {
-            Log.d("final result search", it.toString())
-            videoAdapter.differ.submitList(it)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                bookAdapter.differ.submitList(viewModel.getAllTrendingBooks())
+                videoAdapter.differ.submitList(viewModel.getAllTrendingVideos())
+            }
         }
 
         sliderItems.add(sliderModel("https://firebasestorage.googleapis.com/v0/b/edu-project-2423e.appspot.com/o/IMP_FEATURED%2Fpicture1.jpg?alt=media"))
@@ -98,7 +102,8 @@ class Home : Fragment() {
         sliderItems.add(sliderModel("https://firebasestorage.googleapis.com/v0/b/edu-project-2423e.appspot.com/o/IMP_FEATURED%2Fpicture4.jpg?alt=media"))
 
 
-        binding.viewPagerImageSlider.adapter = sliderAdapter(sliderItems, binding.viewPagerImageSlider)
+        binding.viewPagerImageSlider.adapter =
+            sliderAdapter(sliderItems, binding.viewPagerImageSlider)
         binding.viewPagerImageSlider.clipToPadding = false
         binding.viewPagerImageSlider.clipChildren = false
         binding.viewPagerImageSlider.offscreenPageLimit = 3
@@ -129,40 +134,56 @@ class Home : Fragment() {
         binding.cardCS.deptName.text = "CS"
         binding.cardCS.deptImg.setImageResource(R.drawable.comp)
         binding.cardCS.deptCard.setOnClickListener {
-            it.findNavController().navigate(HomeDirections.actionHome2ToDepartments2("Computer Science", "cs"))
+            it.findNavController()
+                .navigate(HomeDirections.actionHome2ToDepartments2("Computer Science", "cs"))
         }
 
         binding.cardIT.deptName.text = "IT"
-        binding.cardCS.deptImg.setImageResource(R.drawable.it)
-        binding.cardCS.deptCard.setOnClickListener {
-            it.findNavController().navigate(HomeDirections.actionHome2ToDepartments2("Information Technology", "it"))
+        binding.cardIT.deptImg.setImageResource(R.drawable.it)
+        binding.cardIT.deptCard.setOnClickListener {
+            it.findNavController()
+                .navigate(HomeDirections.actionHome2ToDepartments2("Information Technology", "it"))
         }
 
-        binding.cardCS.deptName.text = "ENTC"
-        binding.cardCS.deptImg.setImageResource(R.drawable.entc)
-        binding.cardCS.deptCard.setOnClickListener {
-            it.findNavController().navigate(HomeDirections.actionHome2ToDepartments2("Electronics & Telecommunications", "entc"))
+        binding.cardENTC.deptName.text = "ENTC"
+        binding.cardENTC.deptImg.setImageResource(R.drawable.entc)
+        binding.cardENTC.deptCard.setOnClickListener {
+            it.findNavController().navigate(
+                HomeDirections.actionHome2ToDepartments2(
+                    "Electronics & Telecommunications",
+                    "entc"
+                )
+            )
         }
 
-        binding.cardCS.deptName.text = "EE"
-        binding.cardCS.deptImg.setImageResource(R.drawable.elec)
-        binding.cardCS.deptCard.setOnClickListener {
-            it.findNavController().navigate(HomeDirections.actionHome2ToDepartments2("Electrical Engineering", "ee"))
+        binding.cardEE.deptName.text = "EE"
+        binding.cardEE.deptImg.setImageResource(R.drawable.elec)
+        binding.cardEE.deptCard.setOnClickListener {
+            it.findNavController()
+                .navigate(HomeDirections.actionHome2ToDepartments2("Electrical Engineering", "ee"))
         }
 
-        binding.cardCS.deptName.text = "ME"
-        binding.cardCS.deptImg.setImageResource(R.drawable.mech)
-        binding.cardCS.deptCard.setOnClickListener {
-            it.findNavController().navigate(HomeDirections.actionHome2ToDepartments2("Mechanical Engineering", "me"))
+        binding.cardME.deptName.text = "ME"
+        binding.cardME.deptImg.setImageResource(R.drawable.mech)
+        binding.cardME.deptCard.setOnClickListener {
+            it.findNavController()
+                .navigate(HomeDirections.actionHome2ToDepartments2("Mechanical Engineering", "me"))
         }
 
-        binding.cardCS.deptName.text = "CSBS"
-        binding.cardCS.deptImg.setImageResource(R.drawable.csbs)
-        binding.cardCS.deptCard.setOnClickListener {
-            it.findNavController().navigate(HomeDirections.actionHome2ToDepartments2("Computer Science with\nBusiness Studies", "csbs"))
+        binding.cardCSBS.deptName.text = "CSBS"
+        binding.cardCSBS.deptImg.setImageResource(R.drawable.csbs)
+        binding.cardCSBS.deptCard.setOnClickListener {
+            it.findNavController().navigate(
+                HomeDirections.actionHome2ToDepartments2(
+                    "Computer Science with\nBusiness Studies",
+                    "csbs"
+                )
+            )
         }
     }
 
     private val sliderRunnable =
-        Runnable { binding.viewPagerImageSlider.currentItem = binding.viewPagerImageSlider.currentItem + 1 }
+        Runnable {
+            binding.viewPagerImageSlider.currentItem = binding.viewPagerImageSlider.currentItem + 1
+        }
 }

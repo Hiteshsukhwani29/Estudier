@@ -5,25 +5,24 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.scriptech.vstudy.database.NotesDatabase
 import com.scriptech.vstudy.model.Books
 import com.scriptech.vstudy.model.DepartmentModel
+import kotlinx.coroutines.tasks.await
 
 class NotesRepository(private val database: NotesDatabase) {
 
     val db = FirebaseFirestore.getInstance()
 
-    lateinit var SubjectsList: MutableList<DepartmentModel>
+    var _SubjectsList: MutableList<DepartmentModel> = mutableListOf()
 
-    fun getAllSubjects(dept_link: String): MutableList<DepartmentModel> {
-        db.collection(dept_link)
+    suspend fun getAllSubjects(dept_link: String): MutableList<DepartmentModel> {
+        val result = db.collection(dept_link)
             .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    SubjectsList.add(document.toObject(DepartmentModel::class.java))
-                }
+            .await()
+        for (document in result) {
+            document.toObject(DepartmentModel::class.java).let{
+                _SubjectsList.add(it)
             }
-            .addOnFailureListener { exception ->
-                Log.d("Trending Books", "Error getting documents: ", exception)
-            }
-        return SubjectsList
+        }
+        return _SubjectsList
     }
 
 }

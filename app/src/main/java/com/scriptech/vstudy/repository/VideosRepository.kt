@@ -7,25 +7,24 @@ import com.scriptech.vstudy.database.NotesDatabase
 import com.scriptech.vstudy.database.VideosDatabase
 import com.scriptech.vstudy.model.Books
 import com.scriptech.vstudy.model.Videos
+import kotlinx.coroutines.tasks.await
 
 class VideosRepository(private val database: VideosDatabase) {
 
     val db = FirebaseFirestore.getInstance()
 
-    lateinit var trendingVideosList: MutableList<Videos>
+    var _trendingVideosList: MutableList<Videos> = mutableListOf()
 
-    fun getAllTrendingVideos(): MutableList<Videos> {
-        db.collection("Videos_trending")
+    suspend fun getAllTrendingVideos(): MutableList<Videos> {
+        val result = db.collection("Videos_trending")
             .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    trendingVideosList.add(document.toObject(Videos::class.java))
-                }
+            .await()
+        for (document in result) {
+            document.toObject(Videos::class.java).let{
+                _trendingVideosList.add(it)
             }
-            .addOnFailureListener { exception ->
-                Log.d("Trending Books", "Error getting documents: ", exception)
-            }
-        return trendingVideosList
+        }
+        return _trendingVideosList
     }
 
 }

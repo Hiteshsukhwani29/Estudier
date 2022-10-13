@@ -1,31 +1,26 @@
 package com.scriptech.vstudy.ui.fragments.home
 
+import android.content.Context
+import android.util.Log
+import android.widget.Toast
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.scriptech.vstudy.model.Books
 import com.scriptech.vstudy.model.Videos
-import com.scriptech.vstudy.repository.BooksRepository
-import com.scriptech.vstudy.repository.NotesRepository
-import com.scriptech.vstudy.repository.VideosRepository
+import com.scriptech.vstudy.repository.*
+import com.scriptech.vstudy.ui.activities.mainActivity2.Main2Activity
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
-class HomeViewModel(val booksRepository: BooksRepository, val videosRepository: VideosRepository) : ViewModel() {
+class HomeViewModel(val booksRepository: BooksRepository, val videosRepository: VideosRepository) :
+    ViewModel() {
 
-    var _trendingBooks: MutableLiveData<List<Books>>? = null
-    var trendingBooks: LiveData<List<Books>>? = null
-        get() = _trendingBooks
+    suspend fun getAllTrendingBooks() = booksRepository.getAllTrendingBooks()
 
-    var _trendingVideos: MutableLiveData<List<Videos>>? = null
-    var trendingVideos: LiveData<List<Videos>>? = null
-        get() = _trendingVideos
-
-    fun getAllTrendingBooks() {
-        booksRepository.getAllTrendingBooks()
-        _trendingBooks?.postValue(booksRepository.trendingBooksList)
-    }
-    fun getAllTrendingVideos() {
-        videosRepository.getAllTrendingVideos()
-        _trendingVideos?.postValue(videosRepository.trendingVideosList)
-    }
+    suspend fun getAllTrendingVideos() = videosRepository.getAllTrendingVideos()
 
 }

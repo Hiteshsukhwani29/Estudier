@@ -12,6 +12,6 @@ import kotlinx.android.parcel.Parcelize
 data class Videos(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
-    var img: String? = null,
-    var link: String? = null
+    var video_img: String? = null,
+    var video_link: String? = null
 ): Parcelable
