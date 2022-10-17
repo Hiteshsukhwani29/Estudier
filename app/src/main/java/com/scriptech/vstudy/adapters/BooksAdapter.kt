@@ -13,11 +13,12 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.scriptech.vstudy.R
 import com.scriptech.vstudy.model.Books
+import com.scriptech.vstudy.ui.fragments.allBooks.AllBooksDirections
 import com.scriptech.vstudy.ui.fragments.home.HomeDirections
 import com.scriptech.vstudy.ui.fragments.home.HomeViewModel
 import com.squareup.picasso.Picasso
 
-class BooksAdapter(var viewModel: HomeViewModel? = null) :
+class BooksAdapter(val type: Int = 1) :
     RecyclerView.Adapter<BooksAdapter.ViewHolder>() {
 
     private val differCallback = object : DiffUtil.ItemCallback<Books>() {
@@ -33,19 +34,34 @@ class BooksAdapter(var viewModel: HomeViewModel? = null) :
     val differ = AsyncListDiffer(this, differCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
+        var view = LayoutInflater.from(parent.context)
             .inflate(R.layout.card_trending_book, parent, false)
+        if (type == 2) {
+            view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.card_new_books, parent, false)
+        }
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val book = differ.currentList[position]
-        Picasso.get().load(book.book_img).into(holder.BookImage)
-        holder.BookauthName.text = book.book_author
-        holder.Book.setOnClickListener {
-            it.findNavController().navigate(
-                HomeDirections.actionHome2ToPdf(book.book_link!!)
-            )
+        if (type == 2) {
+            Picasso.get().load(book.book_img).into(holder.BookImage1)
+            holder.BookauthName1.text = book.book_author
+            holder.BookName1.text = book.book_author
+            holder.Book1.setOnClickListener {
+                it.findNavController().navigate(
+                    AllBooksDirections.actionAllBooksToPdf(book.book_link!!)
+                )
+            }
+        } else {
+            Picasso.get().load(book.book_img).into(holder.BookImage)
+            holder.BookauthName.text = book.book_author
+            holder.Book.setOnClickListener {
+                it.findNavController().navigate(
+                    AllBooksDirections.actionAllBooksToPdf(book.book_link!!)
+                )
+            }
         }
     }
 
@@ -54,8 +70,14 @@ class BooksAdapter(var viewModel: HomeViewModel? = null) :
     }
 
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
+
         val Book = itemView.findViewById<CardView>(R.id.card_trending_book)
         val BookImage = itemView.findViewById<ImageView>(R.id.book_image)
         val BookauthName = itemView.findViewById<TextView>(R.id.book_name)
+        val Book1 = itemView.findViewById<CardView>(R.id.card_new_book)
+        val BookImage1 = itemView.findViewById<ImageView>(R.id.img_new_book)
+        val BookauthName1 = itemView.findViewById<TextView>(R.id.txt_new_bookauthorname)
+        val BookName1 = itemView.findViewById<TextView>(R.id.txt_new_bookname)
+
     }
 }

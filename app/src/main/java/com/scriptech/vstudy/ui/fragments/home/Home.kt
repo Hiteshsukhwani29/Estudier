@@ -74,7 +74,7 @@ class Home : Fragment() {
         val viewModelFactory = HomeViewModelFactory(booksRepository, videosRepository)
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
 
-        bookAdapter = BooksAdapter(viewModel)
+        bookAdapter = BooksAdapter()
         videoAdapter = VideosAdapter(viewModel)
 
         binding.homeRvAllbooks.apply {
@@ -126,6 +126,14 @@ class Home : Fragment() {
                 sliderHandler.postDelayed(sliderRunnable, 5000) // slide duration 5 seconds
             }
         })
+
+        binding.videosViewall.setOnClickListener {
+            it.findNavController().navigate(HomeDirections.actionHome2ToAllVideos())
+        }
+
+        binding.booksViewall.setOnClickListener {
+            it.findNavController().navigate(HomeDirections.actionHome2ToAllBooks())
+        }
 
         return root
     }

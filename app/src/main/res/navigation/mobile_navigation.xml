@@ -46,7 +46,11 @@
     <fragment
         android:id="@+id/allBooks"
         android:name="com.scriptech.vstudy.ui.fragments.allBooks.AllBooks"
-        android:label="AllBooks" />
+        android:label="AllBooks" >
+        <action
+            android:id="@+id/action_allBooks_to_pdf"
+            app:destination="@id/pdf" />
+    </fragment>
     <fragment
         android:id="@+id/allVideos"
         android:name="com.scriptech.vstudy.ui.fragments.allVideos.AllVideos"

@@ -10,6 +10,7 @@ class BooksRepository(private val database: BooksDatabase) {
     val db = FirebaseFirestore.getInstance()
 
     var _trendingBooksList: MutableList<Books> = mutableListOf()
+    var _allBooksList: MutableList<Books> = mutableListOf()
 
     suspend fun getAllTrendingBooks(): MutableList<Books> {
         val result = db.collection("Books_trending")
@@ -18,6 +19,18 @@ class BooksRepository(private val database: BooksDatabase) {
         for (document in result) {
             document.toObject(Books::class.java).let{
                 _trendingBooksList.add(it)
+            }
+        }
+        return _trendingBooksList
+    }
+
+    suspend fun getAllBooks(): MutableList<Books> {
+        val result = db.collection("Books_all")
+            .get()
+            .await()
+        for (document in result) {
+            document.toObject(Books::class.java).let{
+                _allBooksList.add(it)
             }
         }
         return _trendingBooksList
