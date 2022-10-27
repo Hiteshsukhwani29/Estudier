@@ -64,8 +64,8 @@ class Subject : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[SubjectViewModel::class.java]
 
         notesAdapter = NotesAdapter()
-        bookAdapter = BooksAdapter(3)
-        videoAdapter = VideosAdapter(3)
+        bookAdapter = BooksAdapter(4)
+        videoAdapter = VideosAdapter(4)
 
         binding.rvSubNotes.apply {
             adapter = notesAdapter

@@ -54,7 +54,11 @@
     <fragment
         android:id="@+id/allVideos"
         android:name="com.scriptech.vstudy.ui.fragments.allVideos.AllVideos"
-        android:label="AllVideos" />
+        android:label="AllVideos" >
+        <action
+            android:id="@+id/action_allVideos_to_videoPlayer"
+            app:destination="@id/videoPlayer" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_feedback"
         android:name="com.scriptech.vstudy.ui.fragments.feedback.Feedback"

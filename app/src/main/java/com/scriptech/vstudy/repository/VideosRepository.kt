@@ -15,6 +15,7 @@ class VideosRepository(private val database: VideosDatabase) {
     val db = FirebaseFirestore.getInstance()
 
     var _trendingVideosList: MutableList<Videos> = mutableListOf()
+    var _allVideosList: MutableList<Videos> = mutableListOf()
     var _subjectVideosList: MutableList<Videos> = mutableListOf()
 
     suspend fun getAllTrendingVideos(): MutableList<Videos> {
@@ -27,6 +28,18 @@ class VideosRepository(private val database: VideosDatabase) {
             }
         }
         return _trendingVideosList
+    }
+
+    suspend fun getAllVideos(): MutableList<Videos> {
+        val result = db.collection("Videos_all")
+            .get()
+            .await()
+        for (document in result) {
+            document.toObject(Videos::class.java).let{
+                _allVideosList.add(it)
+            }
+        }
+        return _allVideosList
     }
 
     suspend fun getSubjectVideos(sub_link: String): MutableList<Videos> {

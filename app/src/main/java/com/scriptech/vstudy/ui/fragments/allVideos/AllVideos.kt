@@ -1,52 +1,42 @@
-package com.scriptech.vstudy.ui.fragments.allBooks
+package com.scriptech.vstudy.ui.fragments.allVideos
 
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.CompositePageTransformer
-import androidx.viewpager2.widget.MarginPageTransformer
-import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
-import com.scriptech.vstudy.R
 import com.scriptech.vstudy.adapters.BooksAdapter
 import com.scriptech.vstudy.adapters.VideosAdapter
-import com.scriptech.vstudy.adapters.sliderAdapter
 import com.scriptech.vstudy.database.BooksDatabase
 import com.scriptech.vstudy.database.VideosDatabase
 import com.scriptech.vstudy.databinding.FragAllbooksBinding
-import com.scriptech.vstudy.databinding.FragHomeBinding
-import com.scriptech.vstudy.model.sliderModel
+import com.scriptech.vstudy.databinding.FragAllvideosBinding
 import com.scriptech.vstudy.repository.BooksRepository
-//import com.scriptech.vstudy.repository.MyCallback
 import com.scriptech.vstudy.repository.VideosRepository
+//import com.scriptech.vstudy.repository.MyCallback
 //import com.scriptech.vstudy.repository.trendingBooksList
 import kotlinx.coroutines.launch
-import kotlin.math.abs
 
-class AllBooks : Fragment() {
-    private var _binding: FragAllbooksBinding? = null
+class AllVideos : Fragment() {
+    private var _binding: FragAllvideosBinding? = null
 
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: AllBooksViewModel
+    private lateinit var viewModel: AllVideosViewModel
 
-    private lateinit var booksAdapter: BooksAdapter
-    private lateinit var allBooksAdapter: BooksAdapter
+    private lateinit var videosAdapter: VideosAdapter
+    private lateinit var allVideosAdapter: VideosAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragAllbooksBinding.inflate(inflater, container, false)
+        _binding = FragAllvideosBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -56,30 +46,30 @@ class AllBooks : Fragment() {
             }
         }
 
-        val booksRepository = BooksRepository(BooksDatabase(requireActivity()))
+        val videosRepository = VideosRepository(VideosDatabase(requireActivity()))
 
-        val viewModelFactory = AllBooksViewModelFactory(booksRepository)
-        viewModel = ViewModelProvider(this, viewModelFactory)[AllBooksViewModel::class.java]
+        val viewModelFactory = AllVideosViewModelFactory(videosRepository)
+        viewModel = ViewModelProvider(this, viewModelFactory)[AllVideosViewModel::class.java]
 
-        booksAdapter = BooksAdapter(2)
-        allBooksAdapter = BooksAdapter(3)
+        videosAdapter = VideosAdapter(2)
+        allVideosAdapter = VideosAdapter(3)
 
-        binding.rvTrendingBook.apply {
-            adapter = booksAdapter
+        binding.rvTrendingVideo.apply {
+            adapter = videosAdapter
             hasFixedSize()
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL ,false)
         }
 
-        binding.rvNewBook.apply {
-            adapter = allBooksAdapter
+        binding.rvNewVideo.apply {
+            adapter = allVideosAdapter
             hasFixedSize()
             layoutManager = LinearLayoutManager(activity)
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                booksAdapter.differ.submitList(viewModel.getAllTrendingBooks())
-                allBooksAdapter.differ.submitList(viewModel.getAllBooks())
+                videosAdapter.differ.submitList(viewModel.getAllTrendingVideos())
+                allVideosAdapter.differ.submitList(viewModel.getAllVideos())
             }
         }
         return root

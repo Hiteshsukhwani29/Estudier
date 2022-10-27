@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.scriptech.vstudy.R
 import com.scriptech.vstudy.model.Books
 import com.scriptech.vstudy.model.Videos
+import com.scriptech.vstudy.ui.fragments.allBooks.AllBooksDirections
+import com.scriptech.vstudy.ui.fragments.allVideos.AllVideosDirections
 import com.scriptech.vstudy.ui.fragments.home.HomeDirections
 import com.scriptech.vstudy.ui.fragments.home.HomeViewModel
 import com.scriptech.vstudy.ui.fragments.subject.SubjectDirections
@@ -35,21 +37,40 @@ class VideosAdapter(var type: Int = 1) :
     val differ = AsyncListDiffer(this, differCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context)
+        var view = LayoutInflater.from(parent.context)
             .inflate(R.layout.card_video, parent, false)
+        if (type == 2) {
+            view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.card_all_video, parent, false)
+        }
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val video = differ.currentList[position]
         Picasso.get().load(video.video_img).into(holder.VideoImage)
+        if (type == 2) {
+            holder.VideoImage.setOnClickListener {
+                it.findNavController().navigate(
+                    AllVideosDirections.actionAllVideosToVideoPlayer(video.video_link)
+                )
+            }
+        }
         if (type == 3) {
+            holder.VideoImage.setOnClickListener {
+                it.findNavController().navigate(
+                    AllVideosDirections.actionAllVideosToVideoPlayer(video.video_link)
+                )
+            }
+        }
+        if (type == 4) {
             holder.VideoImage.setOnClickListener {
                 it.findNavController().navigate(
                     SubjectDirections.actionSubjectToVideoPlayer(video.video_link)
                 )
             }
-        } else {
+        }
+        else {
             holder.VideoImage.setOnClickListener {
                 it.findNavController().navigate(
                     HomeDirections.actionHome2ToVideoPlayer(video.video_link)

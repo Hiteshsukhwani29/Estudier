@@ -57,10 +57,18 @@ class BooksAdapter(val type: Int = 1) :
             }
         }
         if (type == 3) {
-            Picasso.get().load(book.book_img).into(holder.BookImage1)
-            holder.BookauthName1.text = book.book_author
-            holder.BookName1.text = book.book_author
-            holder.Book1.setOnClickListener {
+            Picasso.get().load(book.book_img).into(holder.BookImage)
+            holder.BookauthName.text = book.book_author
+            holder.Book.setOnClickListener {
+                it.findNavController().navigate(
+                    AllBooksDirections.actionAllBooksToPdf(book.book_link!!)
+                )
+            }
+        }
+        if (type == 4) {
+            Picasso.get().load(book.book_img).into(holder.BookImage)
+            holder.BookauthName.text = book.book_author
+            holder.Book.setOnClickListener {
                 it.findNavController().navigate(
                     SubjectDirections.actionSubjectToPdf(book.book_link!!)
                 )
@@ -71,7 +79,7 @@ class BooksAdapter(val type: Int = 1) :
             holder.BookauthName.text = book.book_author
             holder.Book.setOnClickListener {
                 it.findNavController().navigate(
-                    AllBooksDirections.actionAllBooksToPdf(book.book_link!!)
+                    HomeDirections.actionHome2ToPdf(book.book_link)
                 )
             }
         }
