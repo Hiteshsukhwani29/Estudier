@@ -16,6 +16,7 @@ import com.scriptech.vstudy.model.Books
 import com.scriptech.vstudy.ui.fragments.allBooks.AllBooksDirections
 import com.scriptech.vstudy.ui.fragments.home.HomeDirections
 import com.scriptech.vstudy.ui.fragments.home.HomeViewModel
+import com.scriptech.vstudy.ui.fragments.subject.SubjectDirections
 import com.squareup.picasso.Picasso
 
 class BooksAdapter(val type: Int = 1) :
@@ -54,7 +55,18 @@ class BooksAdapter(val type: Int = 1) :
                     AllBooksDirections.actionAllBooksToPdf(book.book_link!!)
                 )
             }
-        } else {
+        }
+        if (type == 3) {
+            Picasso.get().load(book.book_img).into(holder.BookImage1)
+            holder.BookauthName1.text = book.book_author
+            holder.BookName1.text = book.book_author
+            holder.Book1.setOnClickListener {
+                it.findNavController().navigate(
+                    SubjectDirections.actionSubjectToPdf(book.book_link!!)
+                )
+            }
+        }
+        else {
             Picasso.get().load(book.book_img).into(holder.BookImage)
             holder.BookauthName.text = book.book_author
             holder.Book.setOnClickListener {

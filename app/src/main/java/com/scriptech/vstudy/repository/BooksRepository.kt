@@ -3,6 +3,7 @@ package com.scriptech.vstudy.repository
 import com.google.firebase.firestore.FirebaseFirestore
 import com.scriptech.vstudy.database.BooksDatabase
 import com.scriptech.vstudy.model.Books
+import com.scriptech.vstudy.model.Notes
 import kotlinx.coroutines.tasks.await
 
 class BooksRepository(private val database: BooksDatabase) {
@@ -11,6 +12,7 @@ class BooksRepository(private val database: BooksDatabase) {
 
     var _trendingBooksList: MutableList<Books> = mutableListOf()
     var _allBooksList: MutableList<Books> = mutableListOf()
+    var _subjectBooksList: MutableList<Books> = mutableListOf()
 
     suspend fun getAllTrendingBooks(): MutableList<Books> {
         val result = db.collection("Books_trending")
@@ -34,6 +36,18 @@ class BooksRepository(private val database: BooksDatabase) {
             }
         }
         return _trendingBooksList
+    }
+
+    suspend fun getSubjectBooks(sub_link: String): MutableList<Books> {
+        val result = db.collection(sub_link+"_books")
+            .get()
+            .await()
+        for (document in result) {
+            document.toObject(Books::class.java).let{
+                _subjectBooksList.add(it)
+            }
+        }
+        return _subjectBooksList
     }
 
 }

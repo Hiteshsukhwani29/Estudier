@@ -6,6 +6,7 @@ import com.scriptech.vstudy.database.BooksDatabase
 import com.scriptech.vstudy.database.NotesDatabase
 import com.scriptech.vstudy.database.VideosDatabase
 import com.scriptech.vstudy.model.Books
+import com.scriptech.vstudy.model.Notes
 import com.scriptech.vstudy.model.Videos
 import kotlinx.coroutines.tasks.await
 
@@ -14,6 +15,7 @@ class VideosRepository(private val database: VideosDatabase) {
     val db = FirebaseFirestore.getInstance()
 
     var _trendingVideosList: MutableList<Videos> = mutableListOf()
+    var _subjectVideosList: MutableList<Videos> = mutableListOf()
 
     suspend fun getAllTrendingVideos(): MutableList<Videos> {
         val result = db.collection("Videos_trending")
@@ -25,6 +27,18 @@ class VideosRepository(private val database: VideosDatabase) {
             }
         }
         return _trendingVideosList
+    }
+
+    suspend fun getSubjectVideos(sub_link: String): MutableList<Videos> {
+        val result = db.collection(sub_link+"_videos")
+            .get()
+            .await()
+        for (document in result) {
+            document.toObject(Videos::class.java).let{
+                _subjectVideosList.add(it)
+            }
+        }
+        return _subjectVideosList
     }
 
 }

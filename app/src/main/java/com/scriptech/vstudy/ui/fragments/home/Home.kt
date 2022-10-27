@@ -4,12 +4,14 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.*
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,16 +25,9 @@ import com.scriptech.vstudy.adapters.sliderAdapter
 import com.scriptech.vstudy.database.BooksDatabase
 import com.scriptech.vstudy.database.VideosDatabase
 import com.scriptech.vstudy.databinding.FragHomeBinding
-import com.scriptech.vstudy.model.Books
 import com.scriptech.vstudy.model.sliderModel
 import com.scriptech.vstudy.repository.BooksRepository
-//import com.scriptech.vstudy.repository.MyCallback
 import com.scriptech.vstudy.repository.VideosRepository
-//import com.scriptech.vstudy.repository.trendingBooksList
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import kotlin.math.abs
 
@@ -75,7 +70,7 @@ class Home : Fragment() {
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
 
         bookAdapter = BooksAdapter()
-        videoAdapter = VideosAdapter(viewModel)
+        videoAdapter = VideosAdapter()
 
         binding.homeRvAllbooks.apply {
             adapter = bookAdapter

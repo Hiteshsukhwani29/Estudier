@@ -13,21 +13,27 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.scriptech.vstudy.R
 import com.scriptech.vstudy.model.Books
-import com.scriptech.vstudy.model.Videos
+import com.scriptech.vstudy.model.DepartmentModel
+import com.scriptech.vstudy.model.Notes
+import com.scriptech.vstudy.ui.fragments.departments.DepartmentViewModel
+import com.scriptech.vstudy.ui.fragments.departments.DepartmentsDirections
 import com.scriptech.vstudy.ui.fragments.home.HomeDirections
 import com.scriptech.vstudy.ui.fragments.home.HomeViewModel
 import com.scriptech.vstudy.ui.fragments.subject.SubjectDirections
 import com.squareup.picasso.Picasso
 
-class VideosAdapter(var type: Int = 1) :
-    RecyclerView.Adapter<VideosAdapter.ViewHolder>() {
+class NotesAdapter() :
+    RecyclerView.Adapter<NotesAdapter.ViewHolder>() {
 
-    private val differCallback = object : DiffUtil.ItemCallback<Videos>() {
-        override fun areItemsTheSame(oldItem: Videos, newItem: Videos): Boolean {
-            return oldItem.video_link == newItem.video_link
+    private val differCallback = object : DiffUtil.ItemCallback<Notes>() {
+        override fun areItemsTheSame(oldItem: Notes, newItem: Notes): Boolean {
+            return oldItem.link == newItem.link
         }
 
-        override fun areContentsTheSame(oldItem: Videos, newItem: Videos): Boolean {
+        override fun areContentsTheSame(
+            oldItem: Notes,
+            newItem: Notes
+        ): Boolean {
             return oldItem == newItem
         }
     }
@@ -36,25 +42,17 @@ class VideosAdapter(var type: Int = 1) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.card_video, parent, false)
+            .inflate(R.layout.card_subject, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val video = differ.currentList[position]
-        Picasso.get().load(video.video_img).into(holder.VideoImage)
-        if (type == 3) {
-            holder.VideoImage.setOnClickListener {
-                it.findNavController().navigate(
-                    SubjectDirections.actionSubjectToVideoPlayer(video.video_link)
-                )
-            }
-        } else {
-            holder.VideoImage.setOnClickListener {
-                it.findNavController().navigate(
-                    HomeDirections.actionHome2ToVideoPlayer(video.video_link)
-                )
-            }
+        val note = differ.currentList[position]
+        holder.NoteName.text = note.name
+        holder.NoteName.setOnClickListener {
+            it.findNavController().navigate(
+                SubjectDirections.actionSubjectToPdf(note.link)
+            )
         }
     }
 
@@ -63,6 +61,6 @@ class VideosAdapter(var type: Int = 1) :
     }
 
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-        val VideoImage = itemView.findViewById<ImageView>(R.id.video_image)
+        val NoteName = itemView.findViewById<TextView>(R.id.txt_sub_notes)
     }
 }

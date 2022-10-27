@@ -106,5 +106,11 @@
         <argument
             android:name="sub_link"
             app:argType="string" />
+        <action
+            android:id="@+id/action_subject_to_pdf"
+            app:destination="@id/pdf" />
+        <action
+            android:id="@+id/action_subject_to_videoPlayer"
+            app:destination="@id/videoPlayer" />
     </fragment>
 </navigation>

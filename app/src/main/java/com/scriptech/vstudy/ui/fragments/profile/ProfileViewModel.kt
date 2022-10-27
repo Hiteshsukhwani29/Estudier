@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class ProfileViewModel(val userRepository: UserRepository) :
+class ProfileViewModel(var userRepository: UserRepository) :
     ViewModel() {
 
     var _userInfo: MutableLiveData<UserInfo>? = null
