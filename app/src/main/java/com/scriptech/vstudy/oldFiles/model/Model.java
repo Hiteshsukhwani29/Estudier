@@ -1,4 +1,4 @@
-package com.scriptech.vstudy.uselessFiles;
+package com.scriptech.vstudy.oldFiles.model;
 
 import java.util.ArrayList;
 

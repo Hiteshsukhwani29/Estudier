@@ -16,6 +16,7 @@
         <entry key="app/src/main/res/layout/frag_intro2.xml" value="0.10104166666666667" />
         <entry key="app/src/main/res/layout/frag_intro3.xml" value="0.10104166666666667" />
         <entry key="app/src/main/res/layout/frag_notifications.xml" value="0.14010416666666667" />
+        <entry key="app/src/main/res/layout/frag_webview.xml" value="0.14010416666666667" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.14010416666666667" />
       </map>
     </option>

@@ -80,7 +80,11 @@
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.scriptech.vstudy.ui.fragments.notifications.Notifications"
-        android:label="Notifications" />
+        android:label="Notifications" >
+        <action
+            android:id="@+id/action_navigation_notifications_to_webview"
+            app:destination="@id/webview" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.scriptech.vstudy.ui.fragments.profile.Profile"
@@ -116,5 +120,14 @@
         <action
             android:id="@+id/action_subject_to_videoPlayer"
             app:destination="@id/videoPlayer" />
+    </fragment>
+    <fragment
+        android:id="@+id/webview"
+        android:name="com.scriptech.vstudy.ui.fragments.webview.webview"
+        android:label="webview"
+        tools:layout="@layout/frag_webview">
+        <argument
+            android:name="url"
+            app:argType="string" />
     </fragment>
 </navigation>
