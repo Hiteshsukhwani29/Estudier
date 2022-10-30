@@ -2,6 +2,7 @@ package com.scriptech.vstudy.repository
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.scriptech.vstudy.model.Books
+import com.scriptech.vstudy.model.FeedbackModel
 import com.scriptech.vstudy.model.Notification
 import com.scriptech.vstudy.model.UserInfo
 import kotlinx.coroutines.tasks.await
@@ -26,6 +27,10 @@ class UserRepository {
             }
         }
         return _notificationsList
+    }
+
+    suspend fun contributeToEstudier() {
+        db.collection("Reports").add(FeedbackModel::class.java).await()
     }
 
 }

@@ -134,11 +134,11 @@
 //            @Override
 //            public void onAnimationEnd(Animator animation) {
 //                Log.e("Animation:", "end");
-//                Fragment fragment = new Feedback();
-//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.frameContainer1, fragment);
-//                fragmentTransaction.commit();
+////                Fragment fragment = new Feedback();
+////                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+////                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+////                fragmentTransaction.replace(R.id.frameContainer1, fragment);
+////                fragmentTransaction.commit();
 //            }
 //
 //            @Override
