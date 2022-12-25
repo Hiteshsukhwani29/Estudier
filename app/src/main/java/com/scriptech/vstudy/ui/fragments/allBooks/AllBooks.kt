@@ -61,8 +61,8 @@ class AllBooks : Fragment() {
         val viewModelFactory = AllBooksViewModelFactory(booksRepository)
         viewModel = ViewModelProvider(this, viewModelFactory)[AllBooksViewModel::class.java]
 
-        booksAdapter = BooksAdapter(2)
-        allBooksAdapter = BooksAdapter(3)
+        booksAdapter = BooksAdapter(3)
+        allBooksAdapter = BooksAdapter(2)
 
         binding.rvTrendingBook.apply {
             adapter = booksAdapter
@@ -76,12 +76,14 @@ class AllBooks : Fragment() {
             layoutManager = LinearLayoutManager(activity)
         }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                booksAdapter.differ.submitList(viewModel.getAllTrendingBooks())
-                allBooksAdapter.differ.submitList(viewModel.getAllBooks())
-            }
+        viewModel.getAllBooks().observe(viewLifecycleOwner) {
+            allBooksAdapter.differ.submitList(it)
         }
+
+        viewModel.getAllTrendingBooks().observe(viewLifecycleOwner) {
+            booksAdapter.differ.submitList(it)
+        }
+
         return root
     }
 }

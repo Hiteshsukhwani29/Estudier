@@ -69,26 +69,26 @@ class Home : Fragment() {
         val viewModelFactory = HomeViewModelFactory(booksRepository, videosRepository)
         viewModel = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
 
-        bookAdapter = BooksAdapter()
+        bookAdapter = BooksAdapter(1)
         videoAdapter = VideosAdapter()
 
         binding.homeRvAllbooks.apply {
             adapter = bookAdapter
             hasFixedSize()
-            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL ,false)
+            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         }
 
         binding.homeRvAllvideos.apply {
             adapter = videoAdapter
             hasFixedSize()
-            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL ,false)
+            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                bookAdapter.differ.submitList(viewModel.getAllTrendingBooks())
-                videoAdapter.differ.submitList(viewModel.getAllTrendingVideos())
-            }
+        viewModel.getAllTrendingBooks().observe(viewLifecycleOwner){
+            bookAdapter.differ.submitList(it)
+        }
+        viewModel.getAllTrendingVideos().observe(viewLifecycleOwner){
+            videoAdapter.differ.submitList(it)
         }
 
         sliderItems.add(sliderModel("https://firebasestorage.googleapis.com/v0/b/edu-project-2423e.appspot.com/o/IMP_FEATURED%2Fpicture1.jpg?alt=media"))
@@ -189,4 +189,5 @@ class Home : Fragment() {
         Runnable {
             binding.viewPagerImageSlider.currentItem = binding.viewPagerImageSlider.currentItem + 1
         }
+
 }

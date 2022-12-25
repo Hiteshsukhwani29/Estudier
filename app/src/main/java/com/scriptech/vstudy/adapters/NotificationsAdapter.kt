@@ -55,7 +55,7 @@ class NotificationsAdapter() :
         Picasso.get().load(notification.notification_img).into(holder.NotificationImage)
         holder.NotificationCard.setOnClickListener {
             it.findNavController().navigate(
-                NotificationsDirections.actionNavigationNotificationsToWebview(notification.notification_link)
+                NotificationsDirections.actionNavigationNotificationsToWebview(notification.notification_link!!)
             )
         }
     }

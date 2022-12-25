@@ -19,8 +19,8 @@ import kotlinx.coroutines.launch
 class AllBooksViewModel(val booksRepository: BooksRepository) :
     ViewModel() {
 
-    suspend fun getAllTrendingBooks() = booksRepository.getAllTrendingBooks()
+    fun getAllTrendingBooks() = booksRepository.getAllTrendingBooks()
 
-    suspend fun getAllBooks() = booksRepository.getAllBooks()
+    fun getAllBooks() = booksRepository.getAllBooks()
 
 }

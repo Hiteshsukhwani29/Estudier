@@ -1,6 +1,5 @@
 package com.scriptech.vstudy.adapters
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import com.scriptech.vstudy.R
 import com.scriptech.vstudy.model.Books
 import com.scriptech.vstudy.ui.fragments.allBooks.AllBooksDirections
 import com.scriptech.vstudy.ui.fragments.home.HomeDirections
-import com.scriptech.vstudy.ui.fragments.home.HomeViewModel
 import com.scriptech.vstudy.ui.fragments.subject.SubjectDirections
 import com.squareup.picasso.Picasso
 
@@ -24,7 +22,7 @@ class BooksAdapter(val type: Int = 1) :
 
     private val differCallback = object : DiffUtil.ItemCallback<Books>() {
         override fun areItemsTheSame(oldItem: Books, newItem: Books): Boolean {
-            return oldItem.book_link == newItem.book_link
+            return oldItem.id == newItem.id
         }
 
         override fun areContentsTheSame(oldItem: Books, newItem: Books): Boolean {
@@ -33,6 +31,10 @@ class BooksAdapter(val type: Int = 1) :
     }
 
     val differ = AsyncListDiffer(this, differCallback)
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int, payloads: MutableList<Any>) {
+        super.onBindViewHolder(holder, position, payloads)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var view = LayoutInflater.from(parent.context)
@@ -79,7 +81,7 @@ class BooksAdapter(val type: Int = 1) :
             holder.BookauthName.text = book.book_author
             holder.Book.setOnClickListener {
                 it.findNavController().navigate(
-                    HomeDirections.actionHome2ToPdf(book.book_link)
+                    HomeDirections.actionHome2ToPdf(book.book_link!!)
                 )
             }
         }

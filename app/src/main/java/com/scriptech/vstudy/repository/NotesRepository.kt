@@ -1,42 +1,51 @@
 package com.scriptech.vstudy.repository
 
-import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FirebaseFirestore
 import com.scriptech.vstudy.database.NotesDatabase
-import com.scriptech.vstudy.model.Books
 import com.scriptech.vstudy.model.DepartmentModel
 import com.scriptech.vstudy.model.Notes
-import kotlinx.coroutines.tasks.await
+
 
 class NotesRepository(private val database: NotesDatabase) {
 
     val db = FirebaseFirestore.getInstance()
 
-    var _SubjectsList: MutableList<DepartmentModel> = mutableListOf()
-    var _NotesList: MutableList<Notes> = mutableListOf()
+    fun getAllSubjects(deptLink: String): LiveData<List<DepartmentModel>> {
+        val items = MutableLiveData<List<DepartmentModel>>()
+        db.collection(deptLink)
+            .addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    return@addSnapshotListener
+                }
 
-    suspend fun getAllSubjects(dept_link: String): MutableList<DepartmentModel> {
-        val result = db.collection(dept_link)
-            .get()
-            .await()
-        for (document in result) {
-            document.toObject(DepartmentModel::class.java).let{
-                _SubjectsList.add(it)
+                val itemsList = mutableListOf<DepartmentModel>()
+                for (doc in snapshot!!) {
+                    val item = doc.toObject(DepartmentModel::class.java)
+                    itemsList.add(item)
+                }
+                items.value = itemsList
             }
-        }
-        return _SubjectsList
+        return items
     }
 
-    suspend fun getSubjectNotes(sub_link: String): MutableList<Notes> {
-        val result = db.collection(sub_link)
-            .get()
-            .await()
-        for (document in result) {
-            document.toObject(Notes::class.java).let{
-                _NotesList.add(it)
+    fun getSubjectNotes(sub_link: String): LiveData<List<Notes>> {
+        val items = MutableLiveData<List<Notes>>()
+        db.collection(sub_link)
+            .addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    return@addSnapshotListener
+                }
+
+                val itemsList = mutableListOf<Notes>()
+                for (doc in snapshot!!) {
+                    val item = doc.toObject(Notes::class.java)
+                    itemsList.add(item)
+                }
+                items.value = itemsList
             }
-        }
-        return _NotesList
+        return items
     }
 
 }

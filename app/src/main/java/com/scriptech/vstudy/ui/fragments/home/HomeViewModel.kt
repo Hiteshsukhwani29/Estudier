@@ -19,8 +19,8 @@ import kotlinx.coroutines.launch
 class HomeViewModel(val booksRepository: BooksRepository, val videosRepository: VideosRepository) :
     ViewModel() {
 
-    suspend fun getAllTrendingBooks() = booksRepository.getAllTrendingBooks()
+    fun getAllTrendingBooks() = booksRepository.getAllTrendingBooks()
 
-    suspend fun getAllTrendingVideos() = videosRepository.getAllTrendingVideos()
+    fun getAllTrendingVideos() = videosRepository.getAllTrendingVideos()
 
 }

@@ -12,6 +12,6 @@ import kotlinx.android.parcel.Parcelize
 data class Notes(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,
-    var name: String? = null,
-    var link: String? = null
+    var notes_name: String? = null,
+    var notes_link: String? = null
 ): Parcelable

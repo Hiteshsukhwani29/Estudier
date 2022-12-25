@@ -1,6 +1,7 @@
 package com.scriptech.vstudy.adapters
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +28,7 @@ class NotesAdapter() :
 
     private val differCallback = object : DiffUtil.ItemCallback<Notes>() {
         override fun areItemsTheSame(oldItem: Notes, newItem: Notes): Boolean {
-            return oldItem.link == newItem.link
+            return oldItem.notes_link == newItem.notes_link
         }
 
         override fun areContentsTheSame(
@@ -48,10 +49,10 @@ class NotesAdapter() :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val note = differ.currentList[position]
-        holder.NoteName.text = note.name
+        holder.NoteName.text = note.notes_name
         holder.NoteName.setOnClickListener {
             it.findNavController().navigate(
-                SubjectDirections.actionSubjectToPdf(note.link)
+                SubjectDirections.actionSubjectToPdf(note.notes_link!!)
             )
         }
     }

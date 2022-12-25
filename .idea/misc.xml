@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.1453125" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.10104166666666667" />
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.10104166666666667" />
         <entry key="app/src/main/res/layout/card_all_video.xml" value="0.10104166666666667" />
@@ -11,12 +12,15 @@
         <entry key="app/src/main/res/layout/card_trending_book.xml" value="0.11927083333333334" />
         <entry key="app/src/main/res/layout/card_video.xml" value="0.11927083333333334" />
         <entry key="app/src/main/res/layout/frag_allbooks.xml" value="0.11927083333333334" />
+        <entry key="app/src/main/res/layout/frag_allvideos.xml" value="0.11927083333333334" />
         <entry key="app/src/main/res/layout/frag_feedback.xml" value="0.14010416666666667" />
         <entry key="app/src/main/res/layout/frag_home.xml" value="0.14010416666666667" />
         <entry key="app/src/main/res/layout/frag_intro1.xml" value="0.10104166666666667" />
         <entry key="app/src/main/res/layout/frag_intro2.xml" value="0.10104166666666667" />
         <entry key="app/src/main/res/layout/frag_intro3.xml" value="0.10104166666666667" />
+        <entry key="app/src/main/res/layout/frag_login.xml" value="0.14114583333333333" />
         <entry key="app/src/main/res/layout/frag_notifications.xml" value="0.14010416666666667" />
+        <entry key="app/src/main/res/layout/frag_subjects.xml" value="0.11927083333333334" />
         <entry key="app/src/main/res/layout/frag_webview.xml" value="0.14010416666666667" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.14010416666666667" />
       </map>

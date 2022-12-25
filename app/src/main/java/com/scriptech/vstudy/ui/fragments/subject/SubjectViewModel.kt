@@ -11,10 +11,11 @@ import com.scriptech.vstudy.repository.VideosRepository
 class SubjectViewModel(val notesRepository: NotesRepository, val booksRepository: BooksRepository, val videosRepository: VideosRepository) :
     ViewModel() {
 
-    suspend fun getSubjectNotes(subLink: String): MutableList<Notes> = notesRepository.getSubjectNotes(subLink)
+    fun getSubjectNotes(subLink: String) = notesRepository.getSubjectNotes(subLink)
 
-    suspend fun getSubjectBooks(subLink: String): MutableList<Books> = booksRepository.getSubjectBooks(subLink)
+    fun getSubjectBooks(subLink: String) = booksRepository.getSubjectBooks(subLink)
 
-    suspend fun getSubjectVideos(subLink: String): MutableList<Videos> = videosRepository.getSubjectVideos(subLink)
+    fun getSubjectVideos(subLink: String) = videosRepository.getSubjectVideos(subLink)
+
 
 }

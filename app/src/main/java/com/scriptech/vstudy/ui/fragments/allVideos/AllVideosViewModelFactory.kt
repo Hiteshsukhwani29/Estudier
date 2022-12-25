@@ -2,7 +2,6 @@ package com.scriptech.vstudy.ui.fragments.allVideos
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.scriptech.vstudy.repository.BooksRepository
 import com.scriptech.vstudy.repository.VideosRepository
 
 class AllVideosViewModelFactory(val videosRepository: VideosRepository): ViewModelProvider.Factory {

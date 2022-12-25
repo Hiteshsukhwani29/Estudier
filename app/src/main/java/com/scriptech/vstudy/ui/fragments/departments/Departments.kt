@@ -12,17 +12,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.scriptech.vstudy.adapters.BooksAdapter
 import com.scriptech.vstudy.adapters.DepartmentAdapter
 import com.scriptech.vstudy.database.NotesDatabase
 import com.scriptech.vstudy.databinding.FragDepartmentsBinding
-import com.scriptech.vstudy.databinding.FragHomeBinding
 import com.scriptech.vstudy.repository.NotesRepository
-import com.scriptech.vstudy.ui.fragments.home.HomeViewModel
-import com.scriptech.vstudy.ui.fragments.home.HomeViewModelFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class Departments: Fragment() {
+class Departments : Fragment() {
     private var _binding: FragDepartmentsBinding? = null
 
     private val binding get() = _binding!!
@@ -48,19 +46,14 @@ class Departments: Fragment() {
 
         binding.deptName.text = args.deptName
 
-//        viewModel.getAllSubjects(args.deptLink)
-
         deptAdapter = DepartmentAdapter(viewModel)
-
         binding.recyclerProfile.apply {
             adapter = deptAdapter
             layoutManager = LinearLayoutManager(activity)
         }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                deptAdapter.differ.submitList(viewModel.getAllSubjects(args.deptLink))
-            }
+        viewModel.getAllSubjects(args.deptLink).observe(viewLifecycleOwner) {
+            deptAdapter.differ.submitList(it)
         }
 
         return root

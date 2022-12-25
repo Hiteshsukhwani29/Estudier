@@ -19,7 +19,7 @@ interface NotesDao {
         Log.d("already saved",id.toString())
     }
 
-    @Query("SELECT * FROM notes WHERE name LIKE :query")
+    @Query("SELECT * FROM notes WHERE notes_name LIKE :query")
     suspend fun searchSavedNotes(query: String): List<Notes>
 
     @Delete

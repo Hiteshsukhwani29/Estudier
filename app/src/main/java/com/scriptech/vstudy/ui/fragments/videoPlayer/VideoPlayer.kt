@@ -36,7 +36,9 @@ class VideoPlayer : Fragment() {
 
     private lateinit var exoPlayer: SimpleExoPlayer
 
-    private var videoURL: String = args.link
+    private val videoURL by lazy {
+        args.link
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

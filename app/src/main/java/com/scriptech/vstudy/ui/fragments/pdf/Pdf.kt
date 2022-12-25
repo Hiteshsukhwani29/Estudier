@@ -25,7 +25,9 @@ class Pdf: Fragment() {
 
     private val args by navArgs<PdfArgs>()
 
-    private val pdfurl = args.link
+    private val pdfurl by lazy {
+        args.link
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

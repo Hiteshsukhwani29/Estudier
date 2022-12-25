@@ -3,6 +3,7 @@ package com.scriptech.vstudy.ui.fragments.subject
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -67,6 +68,8 @@ class Subject : Fragment() {
         bookAdapter = BooksAdapter(4)
         videoAdapter = VideosAdapter(4)
 
+        binding.subName.text = args.subName
+
         binding.rvSubNotes.apply {
             adapter = notesAdapter
             hasFixedSize()
@@ -85,12 +88,16 @@ class Subject : Fragment() {
             layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                notesAdapter.differ.submitList(viewModel.getSubjectNotes(args.subLink))
-                bookAdapter.differ.submitList(viewModel.getSubjectBooks(args.subLink))
-                videoAdapter.differ.submitList(viewModel.getSubjectVideos(args.subLink))
-            }
+        viewModel.getSubjectNotes(args.subLink).observe(viewLifecycleOwner) {
+            notesAdapter.differ.submitList(it)
+        }
+
+        viewModel.getSubjectBooks(args.subLink).observe(viewLifecycleOwner) {
+            bookAdapter.differ.submitList(it)
+        }
+
+        viewModel.getSubjectVideos(args.subLink).observe(viewLifecycleOwner) {
+            videoAdapter.differ.submitList(it)
         }
 
         return root

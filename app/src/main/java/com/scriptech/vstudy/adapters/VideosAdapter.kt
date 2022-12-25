@@ -52,28 +52,28 @@ class VideosAdapter(var type: Int = 1) :
         if (type == 2) {
             holder.VideoImage.setOnClickListener {
                 it.findNavController().navigate(
-                    AllVideosDirections.actionAllVideosToVideoPlayer(video.video_link)
+                    AllVideosDirections.actionAllVideosToVideoPlayer(video.video_link!!)
                 )
             }
         }
         if (type == 3) {
             holder.VideoImage.setOnClickListener {
                 it.findNavController().navigate(
-                    AllVideosDirections.actionAllVideosToVideoPlayer(video.video_link)
+                    AllVideosDirections.actionAllVideosToVideoPlayer(video.video_link!!)
                 )
             }
         }
         if (type == 4) {
             holder.VideoImage.setOnClickListener {
                 it.findNavController().navigate(
-                    SubjectDirections.actionSubjectToVideoPlayer(video.video_link)
+                    SubjectDirections.actionSubjectToVideoPlayer(video.video_link!!)
                 )
             }
         }
         else {
             holder.VideoImage.setOnClickListener {
                 it.findNavController().navigate(
-                    HomeDirections.actionHome2ToVideoPlayer(video.video_link)
+                    HomeDirections.actionHome2ToVideoPlayer(video.video_link!!)
                 )
             }
         }

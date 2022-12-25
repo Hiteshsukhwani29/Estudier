@@ -1,5 +1,7 @@
 package com.scriptech.vstudy.ui.fragments.allVideos
 
+//import com.scriptech.vstudy.repository.MyCallback
+//import com.scriptech.vstudy.repository.trendingBooksList
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -7,19 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.*
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.scriptech.vstudy.adapters.BooksAdapter
 import com.scriptech.vstudy.adapters.VideosAdapter
-import com.scriptech.vstudy.database.BooksDatabase
 import com.scriptech.vstudy.database.VideosDatabase
-import com.scriptech.vstudy.databinding.FragAllbooksBinding
 import com.scriptech.vstudy.databinding.FragAllvideosBinding
-import com.scriptech.vstudy.repository.BooksRepository
 import com.scriptech.vstudy.repository.VideosRepository
-//import com.scriptech.vstudy.repository.MyCallback
-//import com.scriptech.vstudy.repository.trendingBooksList
-import kotlinx.coroutines.launch
 
 class AllVideos : Fragment() {
     private var _binding: FragAllvideosBinding? = null
@@ -42,7 +38,8 @@ class AllVideos : Fragment() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requireActivity().window.statusBarColor = Color.WHITE
-                requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+                requireActivity().window.decorView.systemUiVisibility =
+                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
             }
         }
 
@@ -51,13 +48,13 @@ class AllVideos : Fragment() {
         val viewModelFactory = AllVideosViewModelFactory(videosRepository)
         viewModel = ViewModelProvider(this, viewModelFactory)[AllVideosViewModel::class.java]
 
-        videosAdapter = VideosAdapter(2)
-        allVideosAdapter = VideosAdapter(3)
+        videosAdapter = VideosAdapter()
+        allVideosAdapter = VideosAdapter(2)
 
         binding.rvTrendingVideo.apply {
             adapter = videosAdapter
             hasFixedSize()
-            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL ,false)
+            layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         }
 
         binding.rvNewVideo.apply {
@@ -66,12 +63,14 @@ class AllVideos : Fragment() {
             layoutManager = LinearLayoutManager(activity)
         }
 
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                videosAdapter.differ.submitList(viewModel.getAllTrendingVideos())
-                allVideosAdapter.differ.submitList(viewModel.getAllVideos())
-            }
+        viewModel.getAllTrendingVideos().observe(viewLifecycleOwner) {
+            videosAdapter.differ.submitList(it)
         }
+
+        viewModel.getAllVideos().observe(viewLifecycleOwner) {
+            allVideosAdapter.differ.submitList(it)
+        }
+
         return root
     }
 }

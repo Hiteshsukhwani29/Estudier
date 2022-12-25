@@ -1,57 +1,67 @@
 package com.scriptech.vstudy.repository
 
-import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.google.firebase.firestore.FirebaseFirestore
-import com.scriptech.vstudy.database.BooksDatabase
-import com.scriptech.vstudy.database.NotesDatabase
 import com.scriptech.vstudy.database.VideosDatabase
-import com.scriptech.vstudy.model.Books
-import com.scriptech.vstudy.model.Notes
 import com.scriptech.vstudy.model.Videos
-import kotlinx.coroutines.tasks.await
 
 class VideosRepository(private val database: VideosDatabase) {
 
     val db = FirebaseFirestore.getInstance()
 
-    var _trendingVideosList: MutableList<Videos> = mutableListOf()
-    var _allVideosList: MutableList<Videos> = mutableListOf()
-    var _subjectVideosList: MutableList<Videos> = mutableListOf()
+    fun getAllVideos(): LiveData<List<Videos>> {
+        val items = MutableLiveData<List<Videos>>()
+        db.collection("Videos_all")
+            .addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    return@addSnapshotListener
+                }
 
-    suspend fun getAllTrendingVideos(): MutableList<Videos> {
-        val result = db.collection("Videos_trending")
-            .get()
-            .await()
-        for (document in result) {
-            document.toObject(Videos::class.java).let{
-                _trendingVideosList.add(it)
+                val itemsList = mutableListOf<Videos>()
+                for (doc in snapshot!!) {
+                    val item = doc.toObject(Videos::class.java)
+                    itemsList.add(item)
+                }
+                items.value = itemsList
             }
-        }
-        return _trendingVideosList
+        return items
     }
 
-    suspend fun getAllVideos(): MutableList<Videos> {
-        val result = db.collection("Videos_all")
-            .get()
-            .await()
-        for (document in result) {
-            document.toObject(Videos::class.java).let{
-                _allVideosList.add(it)
+    fun getAllTrendingVideos(): LiveData<List<Videos>> {
+        val items = MutableLiveData<List<Videos>>()
+        db.collection("Videos_trending")
+            .addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    return@addSnapshotListener
+                }
+
+                val itemsList = mutableListOf<Videos>()
+                for (doc in snapshot!!) {
+                    val item = doc.toObject(Videos::class.java)
+                    itemsList.add(item)
+                }
+                items.value = itemsList
             }
-        }
-        return _allVideosList
+        return items
     }
 
-    suspend fun getSubjectVideos(sub_link: String): MutableList<Videos> {
-        val result = db.collection(sub_link+"_videos")
-            .get()
-            .await()
-        for (document in result) {
-            document.toObject(Videos::class.java).let{
-                _subjectVideosList.add(it)
+    fun getSubjectVideos(sub_link: String): LiveData<List<Videos>> {
+        val items = MutableLiveData<List<Videos>>()
+        db.collection(sub_link+"_videos")
+            .addSnapshotListener { snapshot, e ->
+                if (e != null) {
+                    return@addSnapshotListener
+                }
+
+                val itemsList = mutableListOf<Videos>()
+                for (doc in snapshot!!) {
+                    val item = doc.toObject(Videos::class.java)
+                    itemsList.add(item)
+                }
+                items.value = itemsList
             }
-        }
-        return _subjectVideosList
+        return items
     }
 
 }
