@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.scriptech.vstudy.R
-import com.scriptech.vstudy.databinding.FragIntro1Binding
 import com.scriptech.vstudy.databinding.FragIntro2Binding
 
 class Intro2: Fragment() {

@@ -1,24 +1,17 @@
 package com.scriptech.vstudy.ui.fragments.departments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.scriptech.vstudy.adapters.DepartmentAdapter
 import com.scriptech.vstudy.database.NotesDatabase
 import com.scriptech.vstudy.databinding.FragDepartmentsBinding
 import com.scriptech.vstudy.repository.NotesRepository
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class Departments : Fragment() {
     private var _binding: FragDepartmentsBinding? = null

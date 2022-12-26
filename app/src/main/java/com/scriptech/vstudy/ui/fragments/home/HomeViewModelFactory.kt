@@ -3,7 +3,6 @@ package com.scriptech.vstudy.ui.fragments.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.scriptech.vstudy.repository.BooksRepository
-import com.scriptech.vstudy.repository.NotesRepository
 import com.scriptech.vstudy.repository.VideosRepository
 
 class HomeViewModelFactory( val booksRepository: BooksRepository, val videosRepository: VideosRepository): ViewModelProvider.Factory {

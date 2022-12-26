@@ -39,7 +39,7 @@ class AllVideos : Fragment() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requireActivity().window.statusBarColor = Color.WHITE
                 requireActivity().window.decorView.systemUiVisibility =
-                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+                    View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
             }
         }
 

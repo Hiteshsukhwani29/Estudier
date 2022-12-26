@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:overScrollMode="never">
@@ -29,7 +28,7 @@
             android:layout_below="@+id/about_us"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/raleway_bold"
-            android:paddingLeft="15dp"
+            android:paddingStart="15dp"
             android:text="Developed By"
             android:textColor="@color/grey"
             android:textSize="@dimen/founder"
@@ -172,7 +171,7 @@
             android:fontFamily="@font/raleway_bold"
             android:layout_below="@+id/founders"
             android:layout_marginTop="30dp"
-            android:paddingLeft="20dp"
+            android:paddingStart="20dp"
             android:text="About the App" />
 
         <TextView
@@ -182,8 +181,8 @@
             android:layout_height="wrap_content"
             android:text="@string/about_the_app"
 
-            android:paddingRight="40dp"
-            android:paddingLeft="20dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="40dp"
             android:lineSpacingExtra="2dp"
             android:layout_marginTop="5dp"
             android:gravity="start" />
@@ -194,7 +193,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:paddingLeft="20dp"
+            android:paddingStart="20dp"
             android:fontFamily="@font/raleway_bold"
             android:text="What's Next!"/>
 

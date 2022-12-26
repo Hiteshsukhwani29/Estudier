@@ -30,7 +30,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:scaleType="fitXY"
-            android:src="@drawable/featured1"></ImageView>
+            android:src="@drawable/featured1" />
     </androidx.cardview.widget.CardView>
 
     <TextView

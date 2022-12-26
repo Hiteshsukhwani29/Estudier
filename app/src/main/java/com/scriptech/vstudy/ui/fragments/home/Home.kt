@@ -8,10 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,7 +25,6 @@ import com.scriptech.vstudy.databinding.FragHomeBinding
 import com.scriptech.vstudy.model.sliderModel
 import com.scriptech.vstudy.repository.BooksRepository
 import com.scriptech.vstudy.repository.VideosRepository
-import kotlinx.coroutines.launch
 import kotlin.math.abs
 
 class Home : Fragment() {

@@ -1,9 +1,6 @@
 package com.scriptech.vstudy.ui.fragments.subject
 
 import androidx.lifecycle.ViewModel
-import com.scriptech.vstudy.model.Books
-import com.scriptech.vstudy.model.Notes
-import com.scriptech.vstudy.model.Videos
 import com.scriptech.vstudy.repository.BooksRepository
 import com.scriptech.vstudy.repository.NotesRepository
 import com.scriptech.vstudy.repository.VideosRepository

@@ -3,15 +3,11 @@ package com.scriptech.vstudy.ui.fragments.subject
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.scriptech.vstudy.adapters.BooksAdapter
@@ -24,7 +20,6 @@ import com.scriptech.vstudy.databinding.FragSubjectsBinding
 import com.scriptech.vstudy.repository.BooksRepository
 import com.scriptech.vstudy.repository.NotesRepository
 import com.scriptech.vstudy.repository.VideosRepository
-import kotlinx.coroutines.launch
 
 class Subject : Fragment() {
     private var _binding: FragSubjectsBinding? = null

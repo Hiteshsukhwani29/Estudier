@@ -22,7 +22,6 @@ import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory
 import com.scriptech.vstudy.databinding.FragVideoplayerBinding
 import com.scriptech.vstudy.ui.activities.mainActivity2.Main2Activity
-import com.scriptech.vstudy.ui.fragments.pdf.PdfArgs
 
 class VideoPlayer : Fragment() {
 
