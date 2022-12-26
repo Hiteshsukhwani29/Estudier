@@ -13,12 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.scriptech.vstudy.R
 import com.scriptech.vstudy.model.Books
 import com.scriptech.vstudy.ui.fragments.allBooks.AllBooksDirections
-import com.scriptech.vstudy.ui.fragments.home.HomeDirections
-import com.scriptech.vstudy.ui.fragments.subject.SubjectDirections
 import com.squareup.picasso.Picasso
 
-class BooksAdapter(val type: Int = 1) :
-    RecyclerView.Adapter<BooksAdapter.ViewHolder>() {
+class AllBooksAdapter() :
+    RecyclerView.Adapter<AllBooksAdapter.ViewHolder>() {
 
     private val differCallback = object : DiffUtil.ItemCallback<Books>() {
         override fun areItemsTheSame(oldItem: Books, newItem: Books): Boolean {
@@ -38,39 +36,20 @@ class BooksAdapter(val type: Int = 1) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.card_trending_book, parent, false)
+            .inflate(R.layout.card_new_books, parent, false)
 
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val book = differ.currentList[position]
-
-        if (type == 3) {
-            Picasso.get().load(book.book_img).into(holder.BookImage)
-            holder.BookauthName.text = book.book_author
-            holder.Book.setOnClickListener {
-                it.findNavController().navigate(
-                    AllBooksDirections.actionAllBooksToPdf(book.book_link!!)
-                )
-            }
-        }
-        if (type == 4) {
-            Picasso.get().load(book.book_img).into(holder.BookImage)
-            holder.BookauthName.text = book.book_author
-            holder.Book.setOnClickListener {
-                it.findNavController().navigate(
-                    SubjectDirections.actionSubjectToPdf(book.book_link!!)
-                )
-            }
-        } else {
-            Picasso.get().load(book.book_img).into(holder.BookImage)
-            holder.BookauthName.text = book.book_author
-            holder.Book.setOnClickListener {
-                it.findNavController().navigate(
-                    HomeDirections.actionHome2ToPdf(book.book_link!!)
-                )
-            }
+        Picasso.get().load(book.book_img).into(holder.BookImage)
+        holder.BookauthName.text = book.book_author
+        holder.BookName.text = book.book_author
+        holder.Book.setOnClickListener {
+            it.findNavController().navigate(
+                AllBooksDirections.actionAllBooksToPdf(book.book_link!!)
+            )
         }
     }
 
@@ -80,9 +59,10 @@ class BooksAdapter(val type: Int = 1) :
 
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
 
-        val Book = itemView.findViewById<CardView>(R.id.card_trending_book)
-        val BookImage = itemView.findViewById<ImageView>(R.id.book_image)
-        val BookauthName = itemView.findViewById<TextView>(R.id.book_name)
+        val Book = itemView.findViewById<CardView>(R.id.card_new_book)
+        val BookImage = itemView.findViewById<ImageView>(R.id.img_new_book)
+        val BookauthName = itemView.findViewById<TextView>(R.id.txt_new_bookauthorname)
+        val BookName = itemView.findViewById<TextView>(R.id.txt_new_bookname)
 
     }
 }
