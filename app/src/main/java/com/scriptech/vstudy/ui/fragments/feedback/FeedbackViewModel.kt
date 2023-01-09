@@ -6,7 +6,7 @@ import com.scriptech.vstudy.repository.UserRepository
 class FeedbackViewModel(val userRepository: UserRepository) :
     ViewModel() {
 
-    suspend fun getUserInfo(uid: String) = userRepository.getUserInfo(uid)
+//    fun getUserInfo(uid: String) = userRepository.getUserInfo(uid)
 
     suspend fun contributeToEstudier() {
         userRepository.contributeToEstudier()

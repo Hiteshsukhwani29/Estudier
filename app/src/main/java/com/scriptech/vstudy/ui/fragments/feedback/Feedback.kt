@@ -25,7 +25,6 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.scriptech.vstudy.databinding.FragFeedbackBinding
 import com.scriptech.vstudy.model.FeedbackModel
-import com.scriptech.vstudy.model.UserInfo
 import com.scriptech.vstudy.repository.UserRepository
 import kotlinx.coroutines.launch
 import java.util.*
@@ -64,7 +63,7 @@ class Feedback : Fragment() {
     lateinit var imageuri: Uri
     var dialog: ProgressDialog? = null
 
-    var FeedbackSubmitted: LottieAnimationView? = null
+    private var FeedbackSubmitted: LottieAnimationView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -124,12 +123,12 @@ class Feedback : Fragment() {
         val viewModelFactory = FeedbackViewModelFactory(userRepository)
         viewModel = ViewModelProvider(this, viewModelFactory)[FeedbackViewModel::class.java]
 
-        val user = UserInfo()
-        Name = user.name.toString()
-        Email = user.email.toString()
-        Number = user.number.toString()
-        binding.personalInfoEmail.setText(user.email.toString())
-        binding.personalInfoName.setText(user.name.toString())
+//        val user = viewModel.getUserInfo(currentuser.toString())
+//        Name = user?.name.toString()
+//        Email = user?.email.toString()
+//        Number = user?.number.toString()
+//        binding.personalInfoEmail.setText(user?.email.toString())
+//        binding.personalInfoName.setText(user?.name.toString())
 
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -226,7 +225,7 @@ class Feedback : Fragment() {
     }
 
     fun hideAll() {
-        FeedbackSubmitted!!.visibility = View.GONE
+        FeedbackSubmitted?.visibility = View.GONE
         binding.feebackMain.visibility = View.VISIBLE
         binding.AddNotes.visibility = View.GONE
         binding.AddBook.visibility = View.GONE
@@ -244,7 +243,7 @@ class Feedback : Fragment() {
             binding.addNotesNotesauthor.error = "Enter Valid Author Name"
             binding.addNotesNotesauthor.requestFocus()
         }
-        if (docURL!!.isEmpty()) Toast.makeText(
+        if (docURL?.isEmpty() == true) Toast.makeText(
             activity,
             "Please Upload Document",
             Toast.LENGTH_SHORT
@@ -262,7 +261,7 @@ class Feedback : Fragment() {
             binding.addBooksBookauthor.error = "Enter Valid Author Name"
             binding.addBooksBookauthor.requestFocus()
         }
-        if (docURL!!.isEmpty()) Toast.makeText(
+        if (docURL?.isEmpty() == true) Toast.makeText(
             activity,
             "Please Upload Document",
             Toast.LENGTH_SHORT
@@ -279,7 +278,7 @@ class Feedback : Fragment() {
             binding.addVideoVideoauthor.error = "Enter Valid Author Name"
             binding.addVideoVideoauthor.requestFocus()
         }
-        if (docURL!!.isEmpty()) Toast.makeText(
+        if (docURL?.isEmpty() == true) Toast.makeText(
             activity,
             "Please Upload Document",
             Toast.LENGTH_SHORT
@@ -306,8 +305,8 @@ class Feedback : Fragment() {
 
     fun reset() {
         binding.feebackMain.visibility = View.GONE
-        FeedbackSubmitted!!.visibility = View.VISIBLE
-        FeedbackSubmitted!!.playAnimation()
+        FeedbackSubmitted?.visibility = View.VISIBLE
+        FeedbackSubmitted?.playAnimation()
         binding.addNotesNotesname.text = null
         binding.addNotesNotesauthor.text = null
         binding.addBooksBookname.text = null
@@ -324,14 +323,14 @@ class Feedback : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
             dialog = ProgressDialog(activity)
-            dialog!!.setMessage("Please Wait...")
-            dialog!!.show()
-            imageuri = data!!.data!!
+            dialog?.setMessage("Please Wait...")
+            dialog?.show()
+            imageuri = data?.data!!
             val timestamp = "" + System.currentTimeMillis()
             val storageReference: StorageReference = FirebaseStorage.getInstance()
                 .getReferenceFromUrl("gs://edu-project-2423e.appspot.com/uploads")
             val filepath: StorageReference = storageReference.child("$timestamp.pdf")
-            if(filepath.putFile(imageuri).isSuccessful){
+            if (filepath.putFile(imageuri).isSuccessful) {
                 filepath.downloadUrl
             }
 //            filepath.putFile(imageuri).addOnCompleteListener{

@@ -360,6 +360,7 @@
                 android:layout_centerVertical="true"
                 android:foregroundGravity="center"
                 app:lottie_loop="false"
+                android:visibility="gone"
                 app:lottie_rawRes="@raw/feedback_submitted" />
 
         </RelativeLayout>

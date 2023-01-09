@@ -8,10 +8,15 @@
         <entry key="app/src/main/res/layout/activity_main2.xml" value="0.10104166666666667" />
         <entry key="app/src/main/res/layout/card_all_video.xml" value="0.10104166666666667" />
         <entry key="app/src/main/res/layout/card_contributor.xml" value="0.14010416666666667" />
+        <entry key="app/src/main/res/layout/card_departments.xml" value="0.14010416666666667" />
         <entry key="app/src/main/res/layout/card_new_books.xml" value="0.14010416666666667" />
+        <entry key="app/src/main/res/layout/card_notification.xml" value="0.14010416666666667" />
+        <entry key="app/src/main/res/layout/card_slide_item.xml" value="0.14010416666666667" />
         <entry key="app/src/main/res/layout/card_subject.xml" value="0.14010416666666667" />
+        <entry key="app/src/main/res/layout/card_team.xml" value="0.14010416666666667" />
         <entry key="app/src/main/res/layout/card_trending_book.xml" value="0.11927083333333334" />
         <entry key="app/src/main/res/layout/card_video.xml" value="0.11927083333333334" />
+        <entry key="app/src/main/res/layout/frag_about_us.xml" value="0.14010416666666667" />
         <entry key="app/src/main/res/layout/frag_allbooks.xml" value="0.11927083333333334" />
         <entry key="app/src/main/res/layout/frag_allvideos.xml" value="0.11927083333333334" />
         <entry key="app/src/main/res/layout/frag_feedback.xml" value="0.14010416666666667" />

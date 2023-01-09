@@ -2,11 +2,10 @@ package com.scriptech.vstudy.ui.activities.mainActivity2
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.scriptech.vstudy.R
 import com.scriptech.vstudy.databinding.ActivityMain2Binding
@@ -20,7 +19,10 @@ class Main2Activity : AppCompatActivity() {
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val navController = this.findNavController(R.id.nav_host_fragment)
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+//        val navController = this.findNavController(R.id.nav_host_fragment)
         binding.navView.setupWithNavController(navController)
     }
 

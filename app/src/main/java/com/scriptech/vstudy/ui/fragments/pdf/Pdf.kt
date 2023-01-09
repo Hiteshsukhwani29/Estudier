@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import com.airbnb.lottie.LottieAnimationView
 import com.github.barteksc.pdfviewer.PDFView
 import com.scriptech.vstudy.databinding.FragPdfBinding
 import com.scriptech.vstudy.ui.activities.mainActivity2.Main2Activity
@@ -18,7 +19,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 
-class Pdf: Fragment() {
+class Pdf : Fragment() {
     private var _binding: FragPdfBinding? = null
 
     private val binding get() = _binding!!
@@ -45,11 +46,11 @@ class Pdf: Fragment() {
                                 or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN)
             }
         }
-        RetrievePDFFromURL(binding.idPDFView).execute(pdfurl)
+        RetrievePDFFromURL(binding.idPDFView, binding.progressbar).execute(pdfurl)
         return root
     }
 
-    class RetrievePDFFromURL(private val pdfView: PDFView) :
+    class RetrievePDFFromURL(private val pdfView: PDFView, private val pb: LottieAnimationView) :
         AsyncTask<String, Void, InputStream>() {
 
         override fun doInBackground(vararg params: String?): InputStream? {
@@ -60,14 +61,15 @@ class Pdf: Fragment() {
                 if (urlConnection.responseCode == 200) {
                     inputStream = BufferedInputStream(urlConnection.inputStream)
                 }
-            }
-            catch (e: Exception) {
+            } catch (e: Exception) {
                 e.printStackTrace()
                 return null
             }
             return inputStream
         }
+
         override fun onPostExecute(result: InputStream?) {
+            pb.visibility = View.GONE;
             pdfView.fromStream(result).load()
         }
     }
@@ -76,6 +78,7 @@ class Pdf: Fragment() {
         super.onResume()
         (activity as Main2Activity?)!!.hideBottomNav()
     }
+
     override fun onStop() {
         super.onStop()
         (activity as Main2Activity?)!!.showBottomNav()

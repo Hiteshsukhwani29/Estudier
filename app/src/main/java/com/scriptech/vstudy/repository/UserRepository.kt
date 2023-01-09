@@ -1,7 +1,6 @@
 package com.scriptech.vstudy.repository
 
 import com.google.firebase.firestore.FirebaseFirestore
-import com.scriptech.vstudy.model.Books
 import com.scriptech.vstudy.model.FeedbackModel
 import com.scriptech.vstudy.model.Notification
 import com.scriptech.vstudy.model.UserInfo
@@ -13,8 +12,12 @@ class UserRepository {
 
     var _notificationsList: MutableList<Notification> = mutableListOf()
 
-    suspend fun getUserInfo(uid: String): UserInfo? {
-        return db.collection("Users").document(uid).get().await().toObject(UserInfo::class.java)
+    fun getUserInfo(uid: String): UserInfo? {
+        var userInfo: UserInfo? = null
+        db.collection("Users").document(uid).get().addOnSuccessListener {
+            userInfo = it.toObject(UserInfo::class.java)!!
+        }
+        return userInfo
     }
 
     suspend fun getAllNotifications(): MutableList<Notification> {
@@ -22,7 +25,7 @@ class UserRepository {
             .get()
             .await()
         for (document in result) {
-            document.toObject(Notification::class.java).let{
+            document.toObject(Notification::class.java).let {
                 _notificationsList.add(it)
             }
         }
